@@ -1,6 +1,6 @@
 {
   "source": "https://openrouter.ai/api/v1/models",
-  "count": 283,
+  "count": 204,
   "models": [
     {
       "id": "mistralai/pixtral-large-2502",
@@ -12,7 +12,6 @@
       "maxOutputTokens": 102400,
       "created": "2026-11-20",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Pixtral Large 2502 is the February 2025 version of Mistral AI's large multimodal model, following Pixtral Large 2411."
     },
     {
@@ -25,21 +24,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-11-18",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Neon is a fast, mid-priced model in the Gemini 4 family from Google, built for coding and agentic work."
-    },
-    {
-      "id": "google/gemini-4-neon:batch",
-      "name": "Gemini 4 Neon (batch)",
-      "provider": "Google",
-      "inputPrice": 1.5,
-      "outputPrice": 7.5,
-      "contextLength": 1048576,
-      "maxOutputTokens": 943718,
-      "created": "2026-11-18",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Neon is a fast, mid-priced model in the Gemini 4 family from Google, built for coding and agentic work."
+      "description": "Gemini 4 Neon is a fast, mid-priced model in the Gemini 4 family from Google, built for coding and agentic work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-4-neon:batch",
+          "inputPrice": 1.5,
+          "outputPrice": 7.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.2-astra",
@@ -51,8 +44,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-11-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Astra is the flagship model in the GPT-6.2 series from OpenAI, built for the hardest projects."
+      "description": "GPT-6.2 Astra is the flagship model in the GPT-6.2 series from OpenAI, built for the hardest projects.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.2-astra:batch",
+          "inputPrice": 4,
+          "outputPrice": 20
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.2-astra-pro",
@@ -64,34 +64,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-11-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Astra Pro is the same underlying model as GPT-6.2 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.2-astra-pro:batch",
-      "name": "GPT-6.2 Astra Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 4,
-      "outputPrice": 20,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-11-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Astra Pro is the same underlying model as GPT-6.2 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.2-astra:batch",
-      "name": "GPT-6.2 Astra (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 4,
-      "outputPrice": 20,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-11-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Astra is the flagship model in the GPT-6.2 series from OpenAI, built for the hardest projects."
+      "description": "GPT-6.2 Astra Pro is the same underlying model as GPT-6.2 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.2-astra-pro:batch",
+          "inputPrice": 4,
+          "outputPrice": 20
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.2-sol",
@@ -103,8 +84,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-11-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Sol is an upgrade to GPT-6.1 Sol from OpenAI, positioned below the flagship GPT-6.2 Astra in the GPT-6.2 series."
+      "description": "GPT-6.2 Sol is an upgrade to GPT-6.1 Sol from OpenAI, positioned below the flagship GPT-6.2 Astra in the GPT-6.2 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.2-sol:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.2-sol-pro",
@@ -116,34 +104,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-11-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Sol Pro is the same underlying model as GPT-6.2 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.2-sol-pro:batch",
-      "name": "GPT-6.2 Sol Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-11-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Sol Pro is the same underlying model as GPT-6.2 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.2-sol:batch",
-      "name": "GPT-6.2 Sol (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-11-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.2 Sol is an upgrade to GPT-6.1 Sol from OpenAI, positioned below the flagship GPT-6.2 Astra in the GPT-6.2 series."
+      "description": "GPT-6.2 Sol Pro is the same underlying model as GPT-6.2 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.2-sol-pro:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "qwen/qwen4-max",
@@ -155,7 +124,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-11-16",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen4 Max is the flagship model in Alibaba's Qwen4 series."
     },
     {
@@ -168,21 +136,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-11-13",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Hydrogen is the high-efficiency workhorse model of the Gemini 4 family from Google, built for high-throughput agentic workflows, coding and multi-model routing at lower c…"
-    },
-    {
-      "id": "google/gemini-4-hydrogen:batch",
-      "name": "Gemini 4 Hydrogen (batch)",
-      "provider": "Google",
-      "inputPrice": 0.75,
-      "outputPrice": 3.75,
-      "contextLength": 1048576,
-      "maxOutputTokens": 943718,
-      "created": "2026-11-13",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Hydrogen is the high-efficiency workhorse model of the Gemini 4 family from Google, built for high-throughput agentic workflows, coding and multi-model routing at lower c…"
+      "description": "Gemini 4 Hydrogen is the high-efficiency workhorse model of the Gemini 4 family from Google, built for high-throughput agentic workflows, coding and multi-model routing at lower c…",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-4-hydrogen:batch",
+          "inputPrice": 0.75,
+          "outputPrice": 3.75
+        }
+      ]
     },
     {
       "id": "google/gemini-4-carbon",
@@ -194,21 +156,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-11-11",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Carbon is a frontier Gemini 4 model from Google for coding, agentic and complex reasoning work."
-    },
-    {
-      "id": "google/gemini-4-carbon:batch",
-      "name": "Gemini 4 Carbon (batch)",
-      "provider": "Google",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1048576,
-      "maxOutputTokens": 943718,
-      "created": "2026-11-11",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Carbon is a frontier Gemini 4 model from Google for coding, agentic and complex reasoning work."
+      "description": "Gemini 4 Carbon is a frontier Gemini 4 model from Google for coding, agentic and complex reasoning work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-4-carbon:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "anthropic/claude-fable-5.2",
@@ -220,21 +176,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-11-10",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5.2 is Anthropic's most capable model for the most demanding technical work, with gains over Fable 5.1 in coding, reasoning, and vision."
-    },
-    {
-      "id": "anthropic/claude-fable-5.2:batch",
-      "name": "Claude Fable 5.2 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 4,
-      "outputPrice": 20,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-11-10",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5.2 is Anthropic's most capable model for the most demanding technical work, with gains over Fable 5.1 in coding, reasoning, and vision."
+      "description": "Claude Fable 5.2 is Anthropic's most capable model for the most demanding technical work, with gains over Fable 5.1 in coding, reasoning, and vision.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-fable-5.2:batch",
+          "inputPrice": 4,
+          "outputPrice": 20
+        }
+      ]
     },
     {
       "id": "google/gemini-omni-1.2-flash",
@@ -246,7 +196,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-11-06",
       "modality": "text+image+video->text+video",
-      "hasFreeVariant": false,
       "description": "Gemini Omni 1.2 Flash is Google's native multimodal video generation and editing model, the successor to Gemini Omni 1.1 Flash."
     },
     {
@@ -259,7 +208,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-11-05",
       "modality": "text+image+video->text+video",
-      "hasFreeVariant": false,
       "description": "Gemini Omni 1.1 Flash is Google's native multimodal video generation and editing model, the generally available successor to Gemini Omni Flash Preview."
     },
     {
@@ -272,8 +220,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-10-27",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Terra is the mid-tier model in OpenAI's GPT-6.1 series, priced below GPT-6.1 Sol."
+      "description": "GPT-6.1 Terra is the mid-tier model in OpenAI's GPT-6.1 series, priced below GPT-6.1 Sol.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.1-terra:batch",
+          "inputPrice": 0.5,
+          "outputPrice": 2.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.1-terra-pro",
@@ -285,34 +240,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-10-27",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Terra Pro is the same underlying model as GPT-6.1 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.1-terra-pro:batch",
-      "name": "GPT-6.1 Terra Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.5,
-      "outputPrice": 2.5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-10-27",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Terra Pro is the same underlying model as GPT-6.1 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.1-terra:batch",
-      "name": "GPT-6.1 Terra (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.5,
-      "outputPrice": 2.5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-10-27",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Terra is the mid-tier model in OpenAI's GPT-6.1 series, priced below GPT-6.1 Sol."
+      "description": "GPT-6.1 Terra Pro is the same underlying model as GPT-6.1 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.1-terra-pro:batch",
+          "inputPrice": 0.5,
+          "outputPrice": 2.5
+        }
+      ]
     },
     {
       "id": "deepseek/deepseek-v4.1-flash-1017",
@@ -324,21 +260,15 @@
       "maxOutputTokens": 393216,
       "created": "2026-10-17",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4.1 Flash 1017 is the October 17, 2026 snapshot of DeepSeek V4.1 Flash, served by DeepSeek under the deepseek-flash API model name."
-    },
-    {
-      "id": "deepseek/deepseek-v4.1-flash-1017:batch",
-      "name": "DeepSeek V4.1 Flash 1017 (batch)",
-      "provider": "DeepSeek",
-      "inputPrice": 0.035,
-      "outputPrice": 0.149,
-      "contextLength": 1048576,
-      "maxOutputTokens": 943718,
-      "created": "2026-10-17",
-      "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4.1 Flash 1017 is the October 17, 2026 snapshot of DeepSeek V4.1 Flash, served by DeepSeek under the deepseek-flash API model name."
+      "description": "DeepSeek V4.1 Flash 1017 is the October 17, 2026 snapshot of DeepSeek V4.1 Flash, served by DeepSeek under the deepseek-flash API model name.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "deepseek/deepseek-v4.1-flash-1017:batch",
+          "inputPrice": 0.035,
+          "outputPrice": 0.149
+        }
+      ]
     },
     {
       "id": "google/gemini-4-argon",
@@ -350,21 +280,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-10-14",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Argon is Google's flagship reasoning model, built for complex software engineering, deep mathematical and scientific problem solving, and autonomous multi-step agents."
-    },
-    {
-      "id": "google/gemini-4-argon:batch",
-      "name": "Gemini 4 Argon (batch)",
-      "provider": "Google",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1048576,
-      "maxOutputTokens": 943718,
-      "created": "2026-10-14",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 4 Argon is Google's flagship reasoning model, built for complex software engineering, deep mathematical and scientific problem solving, and autonomous multi-step agents."
+      "description": "Gemini 4 Argon is Google's flagship reasoning model, built for complex software engineering, deep mathematical and scientific problem solving, and autonomous multi-step agents.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-4-argon:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "anthropic/claude-haiku-5.5",
@@ -376,21 +300,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-10-08",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Haiku 5.5 is Anthropic's small, fast model for high-volume, cost-sensitive work such as summarization, subagents, and browser use."
-    },
-    {
-      "id": "anthropic/claude-haiku-5.5:batch",
-      "name": "Claude Haiku 5.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 0.05,
-      "outputPrice": 0.25,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-10-08",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Haiku 5.5 is Anthropic's small, fast model for high-volume, cost-sensitive work such as summarization, subagents, and browser use."
+      "description": "Claude Haiku 5.5 is Anthropic's small, fast model for high-volume, cost-sensitive work such as summarization, subagents, and browser use.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-haiku-5.5:batch",
+          "inputPrice": 0.05,
+          "outputPrice": 0.25
+        }
+      ]
     },
     {
       "id": "google/gemini-nano-banana-2.1",
@@ -402,7 +320,6 @@
       "maxOutputTokens": 58982,
       "created": "2026-10-07",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Nano Banana 2.1 (Gemini Nano Banana 2.1) is Google's image generation and editing model on the Flash tier, succeeding Nano Banana 2 and Nano Banana Pro."
     },
     {
@@ -415,7 +332,6 @@
       "maxOutputTokens": 262144,
       "created": "2026-10-06",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Mistral Large 4 is a frontier multimodal (text and image input) model from Mistral AI built for reasoning, coding, and agentic workloads."
     },
     {
@@ -428,8 +344,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-30",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Sol is an upgrade to GPT-6 Sol from OpenAI, positioned below the flagship GPT-6 Astra in the GPT-6 series."
+      "description": "GPT-6.1 Sol is an upgrade to GPT-6 Sol from OpenAI, positioned below the flagship GPT-6 Astra in the GPT-6 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.1-sol:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-6.1-sol-pro",
@@ -441,34 +364,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-30",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Sol Pro is the same underlying model as GPT-6.1 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.1-sol-pro:batch",
-      "name": "GPT-6.1 Sol Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-30",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Sol Pro is the same underlying model as GPT-6.1 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6.1-sol:batch",
-      "name": "GPT-6.1 Sol (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-30",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6.1 Sol is an upgrade to GPT-6 Sol from OpenAI, positioned below the flagship GPT-6 Astra in the GPT-6 series."
+      "description": "GPT-6.1 Sol Pro is the same underlying model as GPT-6.1 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6.1-sol-pro:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "anthropic/claude-sonnet-5.5",
@@ -480,21 +384,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-29",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Sonnet 5.5 is Anthropic's Sonnet-class model for well-scoped everyday work, succeeding Claude Sonnet 5 as a direct upgrade."
-    },
-    {
-      "id": "anthropic/claude-sonnet-5.5:batch",
-      "name": "Claude Sonnet 5.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-29",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Sonnet 5.5 is Anthropic's Sonnet-class model for well-scoped everyday work, succeeding Claude Sonnet 5 as a direct upgrade."
+      "description": "Claude Sonnet 5.5 is Anthropic's Sonnet-class model for well-scoped everyday work, succeeding Claude Sonnet 5 as a direct upgrade.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-sonnet-5.5:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.8-max-prime",
@@ -506,7 +404,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-09-24",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.8 Max Prime is a higher-throughput variant of Qwen3.8 Max from Alibaba's Qwen team, served as a separate SKU at a higher price point."
     },
     {
@@ -519,21 +416,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-23",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 5.5 is Anthropic's flagship model for demanding reasoning, coding, and long-horizon agentic work, succeeding Claude Opus 5."
-    },
-    {
-      "id": "anthropic/claude-opus-5.5:batch",
-      "name": "Claude Opus 5.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2,
-      "outputPrice": 10,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-23",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 5.5 is Anthropic's flagship model for demanding reasoning, coding, and long-horizon agentic work, succeeding Claude Opus 5."
+      "description": "Claude Opus 5.5 is Anthropic's flagship model for demanding reasoning, coding, and long-horizon agentic work, succeeding Claude Opus 5.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-5.5:batch",
+          "inputPrice": 2,
+          "outputPrice": 10
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-luna",
@@ -545,8 +436,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-23",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol."
+      "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-luna:batch",
+          "inputPrice": 0.05,
+          "outputPrice": 0.25
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-luna-pro",
@@ -558,34 +456,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-23",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Luna Pro is the same underlying model as GPT-6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-luna-pro:batch",
-      "name": "GPT-6 Luna Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.05,
-      "outputPrice": 0.25,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-23",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Luna Pro is the same underlying model as GPT-6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-luna:batch",
-      "name": "GPT-6 Luna (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.05,
-      "outputPrice": 0.25,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-23",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol."
+      "description": "GPT-6 Luna Pro is the same underlying model as GPT-6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-luna-pro:batch",
+          "inputPrice": 0.05,
+          "outputPrice": 0.25
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-sol",
@@ -597,8 +476,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-23",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Sol is the cost-efficient high-end model in OpenAI's GPT-6 series, positioned below the flagship GPT-6 Astra and above the fast GPT-6 Luna tier."
+      "description": "GPT-6 Sol is the cost-efficient high-end model in OpenAI's GPT-6 series, positioned below the flagship GPT-6 Astra and above the fast GPT-6 Luna tier.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-sol:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-sol-pro",
@@ -610,34 +496,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-23",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Sol Pro is the same underlying model as GPT-6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-sol-pro:batch",
-      "name": "GPT-6 Sol Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-23",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Sol Pro is the same underlying model as GPT-6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-sol:batch",
-      "name": "GPT-6 Sol (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-23",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Sol is the cost-efficient high-end model in OpenAI's GPT-6 series, positioned below the flagship GPT-6 Astra and above the fast GPT-6 Luna tier."
+      "description": "GPT-6 Sol Pro is the same underlying model as GPT-6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-sol-pro:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "x-ai/grok-4.7",
@@ -649,21 +516,15 @@
       "maxOutputTokens": 450000,
       "created": "2026-09-22",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.7 is SpaceXSI's flagship model for coding, agentic tasks, and knowledge work, succeeding Grok 4.6."
-    },
-    {
-      "id": "x-ai/grok-4.7:batch",
-      "name": "Grok 4.7 (batch)",
-      "provider": "xAI",
-      "inputPrice": 1.6,
-      "outputPrice": 4.8,
-      "contextLength": 500000,
-      "maxOutputTokens": 450000,
-      "created": "2026-09-22",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.7 is SpaceXSI's flagship model for coding, agentic tasks, and knowledge work, succeeding Grok 4.6."
+      "description": "Grok 4.7 is SpaceXSI's flagship model for coding, agentic tasks, and knowledge work, succeeding Grok 4.6.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "x-ai/grok-4.7:batch",
+          "inputPrice": 1.6,
+          "outputPrice": 4.8
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.8-omni-flash",
@@ -675,7 +536,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-09-21",
       "modality": "text+image+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.8 Omni Flash is an omni-modal reasoning model from Alibaba, the first Qwen model built around agentic capabilities with native audio-video understanding."
     },
     {
@@ -688,21 +548,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-09-10",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4.1 Flash is a sparse mixture-of-experts model from DeepSeek, and the first built on the company's Causal Encoder-Decoder (CED) architecture."
-    },
-    {
-      "id": "deepseek/deepseek-v4.1-flash:batch",
-      "name": "DeepSeek V4.1 Flash (batch)",
-      "provider": "DeepSeek",
-      "inputPrice": 0.05,
-      "outputPrice": 0.15,
-      "contextLength": 1048576,
-      "maxOutputTokens": 384000,
-      "created": "2026-09-10",
-      "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4.1 Flash is a sparse mixture-of-experts model from DeepSeek, and the first built on the company's Causal Encoder-Decoder (CED) architecture."
+      "description": "DeepSeek V4.1 Flash is a sparse mixture-of-experts model from DeepSeek, and the first built on the company's Causal Encoder-Decoder (CED) architecture.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "deepseek/deepseek-v4.1-flash:batch",
+          "inputPrice": 0.05,
+          "outputPrice": 0.15
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-astra",
@@ -714,8 +568,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-05",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Astra is OpenAI's flagship model for demanding end-to-end work."
+      "description": "GPT-6 Astra is OpenAI's flagship model for demanding end-to-end work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-astra:batch",
+          "inputPrice": 5,
+          "outputPrice": 25
+        }
+      ]
     },
     {
       "id": "openai/gpt-6-astra-pro",
@@ -727,34 +588,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-05",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Astra Pro is the same underlying model as GPT-6 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-astra-pro:batch",
-      "name": "GPT-6 Astra Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 5,
-      "outputPrice": 25,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-05",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Astra Pro is the same underlying model as GPT-6 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-6-astra:batch",
-      "name": "GPT-6 Astra (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 5,
-      "outputPrice": 25,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-05",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-6 Astra is OpenAI's flagship model for demanding end-to-end work."
+      "description": "GPT-6 Astra Pro is the same underlying model as GPT-6 Astra, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-6-astra-pro:batch",
+          "inputPrice": 5,
+          "outputPrice": 25
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.8-max-0902",
@@ -766,21 +608,15 @@
       "maxOutputTokens": 131072,
       "created": "2026-09-04",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.8 Max 0902 is an updated snapshot of Qwen3.8 Max from Alibaba's Qwen team."
-    },
-    {
-      "id": "qwen/qwen3.8-max-0902:batch",
-      "name": "Qwen3.8 Max (0902) (batch)",
-      "provider": "Qwen (Alibaba)",
-      "inputPrice": 1.15,
-      "outputPrice": 3.45,
-      "contextLength": 262144,
-      "maxOutputTokens": 131072,
-      "created": "2026-09-04",
-      "modality": "text+image+video->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.8 Max 0902 is an updated snapshot of Qwen3.8 Max from Alibaba's Qwen team."
+      "description": "Qwen3.8 Max 0902 is an updated snapshot of Qwen3.8 Max from Alibaba's Qwen team.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "qwen/qwen3.8-max-0902:batch",
+          "inputPrice": 1.15,
+          "outputPrice": 3.45
+        }
+      ]
     },
     {
       "id": "google/gemini-3.8-flash",
@@ -792,21 +628,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-09-03",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.8 Flash is Google's most intelligent Flash model with significant gains from 3.7 Flash across software engineering, agentic tasks, and multi-step reasoning."
-    },
-    {
-      "id": "google/gemini-3.8-flash:batch",
-      "name": "Gemini 3.8 Flash (batch)",
-      "provider": "Google",
-      "inputPrice": 0.375,
-      "outputPrice": 1.875,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-09-03",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.8 Flash is Google's most intelligent Flash model with significant gains from 3.7 Flash across software engineering, agentic tasks, and multi-step reasoning."
+      "description": "Gemini 3.8 Flash is Google's most intelligent Flash model with significant gains from 3.7 Flash across software engineering, agentic tasks, and multi-step reasoning.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.8-flash:batch",
+          "inputPrice": 0.375,
+          "outputPrice": 1.875
+        }
+      ]
     },
     {
       "id": "anthropic/claude-fable-5.1",
@@ -818,21 +648,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-09-02",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5.1 improves on Claude Fable 5 across the board, with the biggest gains in agentic coding, long-running agentic workflows, and knowledge work: long code refactors, fr…"
-    },
-    {
-      "id": "anthropic/claude-fable-5.1:batch",
-      "name": "Claude Fable 5.1 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 5,
-      "outputPrice": 25,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-09-02",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5.1 improves on Claude Fable 5 across the board, with the biggest gains in agentic coding, long-running agentic workflows, and knowledge work: long code refactors, fr…"
+      "description": "Claude Fable 5.1 improves on Claude Fable 5 across the board, with the biggest gains in agentic coding, long-running agentic workflows, and knowledge work: long code refactors, fr…",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-fable-5.1:batch",
+          "inputPrice": 5,
+          "outputPrice": 25
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.8-flash",
@@ -844,7 +668,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-08-27",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.8 Flash is a multimodal reasoning model from Alibaba."
     },
     {
@@ -857,7 +680,6 @@
       "maxOutputTokens": 943717,
       "created": "2026-08-21",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek V4 Flash Vision Exp is an experimental vision-enabled version of DeepSeek V4 Flash 0731 from DeepSeek, adding image understanding while matching the base model on text ca…"
     },
     {
@@ -870,21 +692,15 @@
       "maxOutputTokens": 235929,
       "created": "2026-08-15",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.8 27B is an open-weight dense vision-language model from Qwen."
-    },
-    {
-      "id": "qwen/qwen3.8-27b:batch",
-      "name": "Qwen3.8 27B (batch)",
-      "provider": "Qwen (Alibaba)",
-      "inputPrice": 0.16,
-      "outputPrice": 2,
-      "contextLength": 262144,
-      "maxOutputTokens": 235929,
-      "created": "2026-08-15",
-      "modality": "text+image+video->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.8 27B is an open-weight dense vision-language model from Qwen."
+      "description": "Qwen3.8 27B is an open-weight dense vision-language model from Qwen.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "qwen/qwen3.8-27b:batch",
+          "inputPrice": 0.16,
+          "outputPrice": 2
+        }
+      ]
     },
     {
       "id": "google/gemini-3.7-flash",
@@ -896,21 +712,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-08-14",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.7 Flash is a multimodal model from Google for fast agentic workflows, coding, and complex multi-step reasoning."
-    },
-    {
-      "id": "google/gemini-3.7-flash:batch",
-      "name": "Gemini 3.7 Flash (batch)",
-      "provider": "Google",
-      "inputPrice": 0.375,
-      "outputPrice": 1.875,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-08-14",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.7 Flash is a multimodal model from Google for fast agentic workflows, coding, and complex multi-step reasoning."
+      "description": "Gemini 3.7 Flash is a multimodal model from Google for fast agentic workflows, coding, and complex multi-step reasoning.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.7-flash:batch",
+          "inputPrice": 0.375,
+          "outputPrice": 1.875
+        }
+      ]
     },
     {
       "id": "deepseek/deepseek-v4-pro-0813",
@@ -922,7 +732,6 @@
       "maxOutputTokens": 943718,
       "created": "2026-08-13",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek V4 Pro 0813 is a large-scale mixture-of-experts model from DeepSeek."
     },
     {
@@ -935,7 +744,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-08-13",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.8 2.4T A95B is an open-weight sparse mixture-of-experts model from Qwen and the open-weight variant of Qwen3.8 Max, with 95 billion active parameters out of 2.4 trillion tot…"
     },
     {
@@ -948,21 +756,15 @@
       "maxOutputTokens": 450000,
       "created": "2026-08-13",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.6 is a model from SpaceXSI with frontier performance on coding, knowledge work, and STEM."
-    },
-    {
-      "id": "x-ai/grok-4.6:batch",
-      "name": "Grok 4.6 (batch)",
-      "provider": "xAI",
-      "inputPrice": 1.6,
-      "outputPrice": 4.8,
-      "contextLength": 500000,
-      "maxOutputTokens": 450000,
-      "created": "2026-08-13",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.6 is a model from SpaceXSI with frontier performance on coding, knowledge work, and STEM."
+      "description": "Grok 4.6 is a model from SpaceXSI with frontier performance on coding, knowledge work, and STEM.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "x-ai/grok-4.6:batch",
+          "inputPrice": 1.6,
+          "outputPrice": 4.8
+        }
+      ]
     },
     {
       "id": "deepseek/deepseek-v4-flash-0731",
@@ -974,21 +776,15 @@
       "maxOutputTokens": 943718,
       "created": "2026-07-31",
       "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4 Flash 0731 is a sparse mixture-of-experts model from DeepSeek, with 13B active parameters out of 284B total."
-    },
-    {
-      "id": "deepseek/deepseek-v4-flash-0731:batch",
-      "name": "DeepSeek V4 Flash 0731 (batch)",
-      "provider": "DeepSeek",
-      "inputPrice": 0.048,
-      "outputPrice": 0.144,
-      "contextLength": 1048576,
-      "maxOutputTokens": 384000,
-      "created": "2026-07-31",
-      "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "DeepSeek V4 Flash 0731 is a sparse mixture-of-experts model from DeepSeek, with 13B active parameters out of 284B total."
+      "description": "DeepSeek V4 Flash 0731 is a sparse mixture-of-experts model from DeepSeek, with 13B active parameters out of 284B total.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "deepseek/deepseek-v4-flash-0731:batch",
+          "inputPrice": 0.048,
+          "outputPrice": 0.144
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.7-flash",
@@ -1000,7 +796,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-07-28",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.7 Flash is a vision-language reasoning model from Alibaba."
     },
     {
@@ -1013,21 +808,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-25",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 5 is Anthropic’s flagship model for demanding reasoning, coding, and long-horizon agentic work."
-    },
-    {
-      "id": "anthropic/claude-opus-5:batch",
-      "name": "Claude Opus 5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2.5,
-      "outputPrice": 12.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-25",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 5 is Anthropic’s flagship model for demanding reasoning, coding, and long-horizon agentic work."
+      "description": "Claude Opus 5 is Anthropic’s flagship model for demanding reasoning, coding, and long-horizon agentic work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-5:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 12.5
+        }
+      ]
     },
     {
       "id": "google/gemini-3.5-flash-lite",
@@ -1039,21 +828,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-07-22",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.5 Flash Lite is a high-efficiency model from Google with upgraded agentic capabilities."
-    },
-    {
-      "id": "google/gemini-3.5-flash-lite:batch",
-      "name": "Gemini 3.5 Flash Lite (batch)",
-      "provider": "Google",
-      "inputPrice": 0.15,
-      "outputPrice": 1.25,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-07-22",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.5 Flash Lite is a high-efficiency model from Google with upgraded agentic capabilities."
+      "description": "Gemini 3.5 Flash Lite is a high-efficiency model from Google with upgraded agentic capabilities.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.5-flash-lite:batch",
+          "inputPrice": 0.15,
+          "outputPrice": 1.25
+        }
+      ]
     },
     {
       "id": "google/gemini-3.6-flash",
@@ -1065,21 +848,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-07-22",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.6 Flash is a high-efficiency model from Google for coding, agentic workflows, and web and app development."
-    },
-    {
-      "id": "google/gemini-3.6-flash:batch",
-      "name": "Gemini 3.6 Flash (batch)",
-      "provider": "Google",
-      "inputPrice": 0.375,
-      "outputPrice": 1.875,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-07-22",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.6 Flash is a high-efficiency model from Google for coding, agentic workflows, and web and app development."
+      "description": "Gemini 3.6 Flash is a high-efficiency model from Google for coding, agentic workflows, and web and app development.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.6-flash:batch",
+          "inputPrice": 0.375,
+          "outputPrice": 1.875
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-luna",
@@ -1091,8 +868,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Luna is a fast, cost-efficient model in OpenAI's GPT-5.6 series."
+      "description": "GPT-5.6 Luna is a fast, cost-efficient model in OpenAI's GPT-5.6 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-luna:batch",
+          "inputPrice": 0.1,
+          "outputPrice": 0.6
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-luna-pro",
@@ -1104,34 +888,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Luna Pro is the same underlying model as GPT-5.6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-luna-pro:batch",
-      "name": "GPT-5.6 Luna Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.1,
-      "outputPrice": 0.6,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Luna Pro is the same underlying model as GPT-5.6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-luna:batch",
-      "name": "GPT-5.6 Luna (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.1,
-      "outputPrice": 0.6,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Luna is a fast, cost-efficient model in OpenAI's GPT-5.6 series."
+      "description": "GPT-5.6 Luna Pro is the same underlying model as GPT-5.6 Luna, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-luna-pro:batch",
+          "inputPrice": 0.1,
+          "outputPrice": 0.6
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-sol",
@@ -1143,8 +908,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Sol is the flagship model in OpenAI's GPT-5.6 series."
+      "description": "GPT-5.6 Sol is the flagship model in OpenAI's GPT-5.6 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-sol:batch",
+          "inputPrice": 2,
+          "outputPrice": 10
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-sol-pro",
@@ -1156,34 +928,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Sol Pro is the same underlying model as GPT-5.6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-sol-pro:batch",
-      "name": "GPT-5.6 Sol Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 2,
-      "outputPrice": 10,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Sol Pro is the same underlying model as GPT-5.6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-sol:batch",
-      "name": "GPT-5.6 Sol (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 2,
-      "outputPrice": 10,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Sol is the flagship model in OpenAI's GPT-5.6 series."
+      "description": "GPT-5.6 Sol Pro is the same underlying model as GPT-5.6 Sol, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-sol-pro:batch",
+          "inputPrice": 2,
+          "outputPrice": 10
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-terra",
@@ -1195,8 +948,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Terra is a balanced model in OpenAI's GPT-5.6 series, positioned between the flagship Sol tier and the cost-efficient Luna tier."
+      "description": "GPT-5.6 Terra is a balanced model in OpenAI's GPT-5.6 series, positioned between the flagship Sol tier and the cost-efficient Luna tier.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-terra:batch",
+          "inputPrice": 1,
+          "outputPrice": 6
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.6-terra-pro",
@@ -1208,34 +968,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Terra Pro is the same underlying model as GPT-5.6 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-terra-pro:batch",
-      "name": "GPT-5.6 Terra Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 6,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Terra Pro is the same underlying model as GPT-5.6 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks."
-    },
-    {
-      "id": "openai/gpt-5.6-terra:batch",
-      "name": "GPT-5.6 Terra (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 6,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.6 Terra is a balanced model in OpenAI's GPT-5.6 series, positioned between the flagship Sol tier and the cost-efficient Luna tier."
+      "description": "GPT-5.6 Terra Pro is the same underlying model as GPT-5.6 Terra, served with reasoning.mode set to pro for higher-quality responses on complex tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.6-terra-pro:batch",
+          "inputPrice": 1,
+          "outputPrice": 6
+        }
+      ]
     },
     {
       "id": "x-ai/grok-4.5",
@@ -1247,7 +988,6 @@
       "maxOutputTokens": 450000,
       "created": "2026-07-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Grok 4.5 is a model from SpaceXSI with frontier performance on coding, knowledge work, and STEM."
     },
     {
@@ -1260,21 +1000,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-07-01",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Sonnet 5 is Anthropic's most capable Sonnet-class model, with frontier performance across coding, agents, and professional work."
-    },
-    {
-      "id": "anthropic/claude-sonnet-5:batch",
-      "name": "Claude Sonnet 5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 1,
-      "outputPrice": 5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-07-01",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Sonnet 5 is Anthropic's most capable Sonnet-class model, with frontier performance across coding, agents, and professional work."
+      "description": "Sonnet 5 is Anthropic's most capable Sonnet-class model, with frontier performance across coding, agents, and professional work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-sonnet-5:batch",
+          "inputPrice": 1,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "google/gemini-3.1-flash-lite-image",
@@ -1286,7 +1020,6 @@
       "maxOutputTokens": 58982,
       "created": "2026-07-01",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image) is Google's fastest, most cost-efficient Gemini image model, built for high-velocity developer pipelines and rapid-fire visual exp…"
     },
     {
@@ -1299,7 +1032,6 @@
       "maxOutputTokens": 32768,
       "created": "2026-06-18",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Nano Banana Pro is Google’s most advanced image-generation and editing model, built on Gemini 3 Pro."
     },
     {
@@ -1312,7 +1044,6 @@
       "maxOutputTokens": 32768,
       "created": "2026-06-18",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Gemini 3.1 Flash Image, a.k.a."
     },
     {
@@ -1325,21 +1056,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-06-09",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5 is a Mythos-class model from Anthropic, built for autonomous knowledge work and coding."
-    },
-    {
-      "id": "anthropic/claude-fable-5:batch",
-      "name": "Claude Fable 5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 5,
-      "outputPrice": 25,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-06-09",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Fable 5 is a Mythos-class model from Anthropic, built for autonomous knowledge work and coding."
+      "description": "Claude Fable 5 is a Mythos-class model from Anthropic, built for autonomous knowledge work and coding.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-fable-5:batch",
+          "inputPrice": 5,
+          "outputPrice": 25
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.7-plus",
@@ -1351,21 +1076,15 @@
       "maxOutputTokens": 131072,
       "created": "2026-06-03",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.7-Plus is a cost-effective model in Alibaba's Qwen3.7 series."
-    },
-    {
-      "id": "qwen/qwen3.7-plus:batch",
-      "name": "Qwen3.7 Plus (batch)",
-      "provider": "Qwen (Alibaba)",
-      "inputPrice": 0.23,
-      "outputPrice": 0.92,
-      "contextLength": 262144,
-      "maxOutputTokens": 131072,
-      "created": "2026-06-03",
-      "modality": "text+image->text",
-      "hasFreeVariant": false,
-      "description": "Qwen3.7-Plus is a cost-effective model in Alibaba's Qwen3.7 series."
+      "description": "Qwen3.7-Plus is a cost-effective model in Alibaba's Qwen3.7 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "qwen/qwen3.7-plus:batch",
+          "inputPrice": 0.23,
+          "outputPrice": 0.92
+        }
+      ]
     },
     {
       "id": "anthropic/claude-opus-4.8",
@@ -1377,21 +1096,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-05-28",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.8 is Anthropic's most capable generally available model in the Opus family."
-    },
-    {
-      "id": "anthropic/claude-opus-4.8:batch",
-      "name": "Claude Opus 4.8 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2.5,
-      "outputPrice": 12.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-05-28",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.8 is Anthropic's most capable generally available model in the Opus family."
+      "description": "Claude Opus 4.8 is Anthropic's most capable generally available model in the Opus family.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-4.8:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 12.5
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.7-max",
@@ -1403,7 +1116,6 @@
       "maxOutputTokens": 131072,
       "created": "2026-05-22",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.7-Max is the flagship model in Alibaba's Qwen3.7 series."
     },
     {
@@ -1416,21 +1128,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-05-19",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.5 Flash is Google's high-efficiency multimodal model, bringing near-Pro level coding and reasoning at Flash-tier cost and speed."
-    },
-    {
-      "id": "google/gemini-3.5-flash:batch",
-      "name": "Gemini 3.5 Flash (batch)",
-      "provider": "Google",
-      "inputPrice": 0.75,
-      "outputPrice": 4.5,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-05-19",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.5 Flash is Google's high-efficiency multimodal model, bringing near-Pro level coding and reasoning at Flash-tier cost and speed."
+      "description": "Gemini 3.5 Flash is Google's high-efficiency multimodal model, bringing near-Pro level coding and reasoning at Flash-tier cost and speed.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.5-flash:batch",
+          "inputPrice": 0.75,
+          "outputPrice": 4.5
+        }
+      ]
     },
     {
       "id": "google/gemini-3.1-flash-lite",
@@ -1442,21 +1148,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-05-08",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.1 Flash Lite is Google’s GA high-efficiency multimodal model optimized for low-latency, high-volume workloads."
-    },
-    {
-      "id": "google/gemini-3.1-flash-lite:batch",
-      "name": "Gemini 3.1 Flash Lite (batch)",
-      "provider": "Google",
-      "inputPrice": 0.125,
-      "outputPrice": 0.75,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-05-08",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.1 Flash Lite is Google’s GA high-efficiency multimodal model optimized for low-latency, high-volume workloads."
+      "description": "Gemini 3.1 Flash Lite is Google’s GA high-efficiency multimodal model optimized for low-latency, high-volume workloads.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.1-flash-lite:batch",
+          "inputPrice": 0.125,
+          "outputPrice": 0.75
+        }
+      ]
     },
     {
       "id": "openai/gpt-chat-latest",
@@ -1468,7 +1168,6 @@
       "maxOutputTokens": 128000,
       "created": "2026-05-06",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "GPT Chat Latest points to OpenAI's stable API alias chat-latest that always resolves to the latest Instant chat model used in ChatGPT."
     },
     {
@@ -1481,21 +1180,15 @@
       "maxOutputTokens": 209715,
       "created": "2026-05-01",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Mistral Medium 3.5 is a dense 128B instruction-following model from Mistral AI."
-    },
-    {
-      "id": "mistralai/mistral-medium-3-5:batch",
-      "name": "Mistral Medium 3.5 (batch)",
-      "provider": "Mistral",
-      "inputPrice": 0.75,
-      "outputPrice": 3.75,
-      "contextLength": 262144,
-      "maxOutputTokens": 209715,
-      "created": "2026-05-01",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Mistral Medium 3.5 is a dense 128B instruction-following model from Mistral AI."
+      "description": "Mistral Medium 3.5 is a dense 128B instruction-following model from Mistral AI.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "mistralai/mistral-medium-3-5:batch",
+          "inputPrice": 0.75,
+          "outputPrice": 3.75
+        }
+      ]
     },
     {
       "id": "x-ai/grok-4.3",
@@ -1507,21 +1200,15 @@
       "maxOutputTokens": 900000,
       "created": "2026-05-01",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.3 is a reasoning model from SpaceXSI."
-    },
-    {
-      "id": "x-ai/grok-4.3:batch",
-      "name": "Grok 4.3 (batch)",
-      "provider": "xAI",
-      "inputPrice": 1,
-      "outputPrice": 2,
-      "contextLength": 1000000,
-      "maxOutputTokens": 900000,
-      "created": "2026-05-01",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Grok 4.3 is a reasoning model from SpaceXSI."
+      "description": "Grok 4.3 is a reasoning model from SpaceXSI.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "x-ai/grok-4.3:batch",
+          "inputPrice": 1,
+          "outputPrice": 2
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.5-plus-20260420",
@@ -1533,7 +1220,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-04-27",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.5 Plus (April 2026) is a large-scale multimodal language model from Alibaba."
     },
     {
@@ -1546,7 +1232,6 @@
       "maxOutputTokens": 81920,
       "created": "2026-04-27",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.6 27B is a dense 27-billion-parameter language model from the Qwen Team at Alibaba, released in April 2026."
     },
     {
@@ -1559,7 +1244,6 @@
       "maxOutputTokens": 235929,
       "created": "2026-04-27",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.6-35B-A3B is an open-weight multimodal model from Alibaba Cloud with 35 billion total parameters and 3 billion active parameters per token."
     },
     {
@@ -1572,7 +1256,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-04-27",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.6 Flash is a fast, efficient language model from Alibaba's Qwen 3.6 series."
     },
     {
@@ -1585,8 +1268,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-04-25",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.5 is OpenAI’s frontier model designed for complex professional workloads, building on GPT-5.4 with stronger reasoning, higher reliability, and improved token efficiency on h…"
+      "description": "GPT-5.5 is OpenAI’s frontier model designed for complex professional workloads, building on GPT-5.4 with stronger reasoning, higher reliability, and improved token efficiency on h…",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.5:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 15
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.5-pro",
@@ -1598,34 +1288,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-04-25",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.5 Pro is OpenAI’s high-capability model optimized for deep reasoning and accuracy on complex, high-stakes workloads."
-    },
-    {
-      "id": "openai/gpt-5.5-pro:batch",
-      "name": "GPT-5.5 Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 15,
-      "outputPrice": 90,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-04-25",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.5 Pro is OpenAI’s high-capability model optimized for deep reasoning and accuracy on complex, high-stakes workloads."
-    },
-    {
-      "id": "openai/gpt-5.5:batch",
-      "name": "GPT-5.5 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 2.5,
-      "outputPrice": 15,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-04-25",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.5 is OpenAI’s frontier model designed for complex professional workloads, building on GPT-5.4 with stronger reasoning, higher reliability, and improved token efficiency on h…"
+      "description": "GPT-5.5 Pro is OpenAI’s high-capability model optimized for deep reasoning and accuracy on complex, high-stakes workloads.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.5-pro:batch",
+          "inputPrice": 15,
+          "outputPrice": 90
+        }
+      ]
     },
     {
       "id": "deepseek/deepseek-v4-flash",
@@ -1637,7 +1308,6 @@
       "maxOutputTokens": 393216,
       "created": "2026-04-24",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek V4 Flash is an efficiency-optimized Mixture-of-Experts model from DeepSeek with 284B total parameters and 13B activated parameters, supporting a 1M-token context window."
     },
     {
@@ -1650,7 +1320,6 @@
       "maxOutputTokens": 393216,
       "created": "2026-04-24",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek V4 Pro is a large-scale Mixture-of-Experts model from DeepSeek with 1.6T total parameters and 49B activated parameters, supporting a 1M-token context window."
     },
     {
@@ -1663,7 +1332,6 @@
       "maxOutputTokens": 128000,
       "created": "2026-04-22",
       "modality": "text+image+file->text+image",
-      "hasFreeVariant": false,
       "description": "GPT-5.4 Image 2 combines OpenAI's GPT-5.4 model with state-of-the-art image generation capabilities from GPT Image 2."
     },
     {
@@ -1676,21 +1344,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-04-16",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Opus 4.7 is the next generation of Anthropic's Opus family, built for long-running, asynchronous agents."
-    },
-    {
-      "id": "anthropic/claude-opus-4.7:batch",
-      "name": "Claude Opus 4.7 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2.5,
-      "outputPrice": 12.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-04-16",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Opus 4.7 is the next generation of Anthropic's Opus family, built for long-running, asynchronous agents."
+      "description": "Opus 4.7 is the next generation of Anthropic's Opus family, built for long-running, asynchronous agents.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-4.7:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 12.5
+        }
+      ]
     },
     {
       "id": "google/gemma-4-26b-a4b-it",
@@ -1702,7 +1364,6 @@
       "maxOutputTokens": 235929,
       "created": "2026-04-03",
       "modality": "text+image+video->text",
-      "hasFreeVariant": true,
       "description": "Gemma 4 26B A4B IT is an instruction-tuned Mixture-of-Experts (MoE) model from Google DeepMind."
     },
     {
@@ -1715,7 +1376,6 @@
       "maxOutputTokens": 16384,
       "created": "2026-04-03",
       "modality": "text+image+video->text",
-      "hasFreeVariant": true,
       "description": "Gemma 4 31B Instruct is Google DeepMind's 30.7B dense multimodal model supporting text and image input with text output."
     },
     {
@@ -1728,7 +1388,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-04-02",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen 3.6 Plus builds on a hybrid architecture that combines efficient linear attention with sparse mixture-of-experts routing, enabling strong scalability and high-performance inf…"
     },
     {
@@ -1741,7 +1400,6 @@
       "maxOutputTokens": 1800000,
       "created": "2026-04-01",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Grok 4.20 is a reasoning model from SpaceXSI with industry-leading speed and agentic tool calling capabilities."
     },
     {
@@ -1754,7 +1412,6 @@
       "maxOutputTokens": 1800000,
       "created": "2026-04-01",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Grok 4.20 Multi-Agent is a variant of SpaceXSI’s Grok 4.20 designed for collaborative, agent-based workflows."
     },
     {
@@ -1767,7 +1424,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-03-31",
       "modality": "text+image->text+audio",
-      "hasFreeVariant": false,
       "description": "30 second duration clips are priced at $0.04 per clip."
     },
     {
@@ -1780,7 +1436,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-03-31",
       "modality": "text+image->text+audio",
-      "hasFreeVariant": false,
       "description": "Full-length songs are priced at $0.08 per song."
     },
     {
@@ -1793,7 +1448,6 @@
       "maxOutputTokens": 209715,
       "created": "2026-03-17",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Mistral Small 4 is the next major release in the Mistral Small family, unifying the capabilities of several flagship Mistral models into a single system."
     },
     {
@@ -1806,21 +1460,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-03-17",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads."
-    },
-    {
-      "id": "openai/gpt-5.4-mini:batch",
-      "name": "GPT-5.4 Mini (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.375,
-      "outputPrice": 2.25,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2026-03-17",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads."
+      "description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.4-mini:batch",
+          "inputPrice": 0.375,
+          "outputPrice": 2.25
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.4-nano",
@@ -1832,21 +1480,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-03-17",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks."
-    },
-    {
-      "id": "openai/gpt-5.4-nano:batch",
-      "name": "GPT-5.4 Nano (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.1,
-      "outputPrice": 0.625,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2026-03-17",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks."
+      "description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.4-nano:batch",
+          "inputPrice": 0.1,
+          "outputPrice": 0.625
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.5-9b",
@@ -1858,7 +1500,6 @@
       "maxOutputTokens": 235929,
       "created": "2026-03-10",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "Qwen3.5-9B is a multimodal foundation model from the Qwen3.5 family, designed to deliver strong reasoning, coding, and visual understanding in an efficient 9B-parameter architectu…"
     },
     {
@@ -1871,8 +1512,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-03-06",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 is OpenAI’s latest frontier model, unifying the Codex and GPT lines into a single system."
+      "description": "GPT-5.4 is OpenAI’s latest frontier model, unifying the Codex and GPT lines into a single system.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.4:batch",
+          "inputPrice": 1.25,
+          "outputPrice": 7.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.4-pro",
@@ -1884,34 +1532,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-03-06",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks."
-    },
-    {
-      "id": "openai/gpt-5.4-pro:batch",
-      "name": "GPT-5.4 Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 15,
-      "outputPrice": 90,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-03-06",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks."
-    },
-    {
-      "id": "openai/gpt-5.4:batch",
-      "name": "GPT-5.4 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1.25,
-      "outputPrice": 7.5,
-      "contextLength": 1050000,
-      "maxOutputTokens": 128000,
-      "created": "2026-03-06",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.4 is OpenAI’s latest frontier model, unifying the Codex and GPT lines into a single system."
+      "description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.4-pro:batch",
+          "inputPrice": 15,
+          "outputPrice": 90
+        }
+      ]
     },
     {
       "id": "google/gemini-3.1-flash-lite-preview",
@@ -1923,7 +1552,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-03-03",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Gemini 3.1 Flash Lite Preview is Google's high-efficiency model optimized for high-volume use cases."
     },
     {
@@ -1936,7 +1564,6 @@
       "maxOutputTokens": 58982,
       "created": "2026-02-27",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Gemini 3.1 Flash Image Preview, a.k.a."
     },
     {
@@ -1949,7 +1576,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-02-26",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Gemini 3.1 Pro Preview Custom Tools is a variant of Gemini 3.1 Pro that improves tool selection behavior by preventing overuse of a general bash tool when more efficient third-par…"
     },
     {
@@ -1962,7 +1588,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-02-26",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 122B-A10B native vision-language model is built on a hybrid architecture that integrates a linear attention mechanism with a sparse mixture-of-experts model, achieving…"
     },
     {
@@ -1975,7 +1600,6 @@
       "maxOutputTokens": 81920,
       "created": "2026-02-26",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 27B native vision-language Dense model incorporates a linear attention mechanism, delivering fast response times while balancing inference speed and performance."
     },
     {
@@ -1988,7 +1612,6 @@
       "maxOutputTokens": 81920,
       "created": "2026-02-26",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 Series 35B-A3B is a native vision-language model designed with a hybrid architecture that integrates linear attention mechanisms and a sparse mixture-of-experts model,…"
     },
     {
@@ -2001,7 +1624,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-02-26",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 native vision-language Flash models are built on a hybrid architecture that integrates a linear attention mechanism with a sparse mixture-of-experts model, achieving h…"
     },
     {
@@ -2014,7 +1636,6 @@
       "maxOutputTokens": 128000,
       "created": "2026-02-25",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.3-Codex is OpenAI’s most advanced agentic coding model, combining the frontier software engineering performance of GPT-5.2-Codex with the broader reasoning and professional…"
     },
     {
@@ -2027,21 +1648,15 @@
       "maxOutputTokens": 65536,
       "created": "2026-02-19",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.1 Pro Preview is Google’s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage acr…"
-    },
-    {
-      "id": "google/gemini-3.1-pro-preview:batch",
-      "name": "Gemini 3.1 Pro Preview (batch)",
-      "provider": "Google",
-      "inputPrice": 1,
-      "outputPrice": 6,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2026-02-19",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3.1 Pro Preview is Google’s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage acr…"
+      "description": "Gemini 3.1 Pro Preview is Google’s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage acr…",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3.1-pro-preview:batch",
+          "inputPrice": 1,
+          "outputPrice": 6
+        }
+      ]
     },
     {
       "id": "anthropic/claude-sonnet-4.6",
@@ -2053,21 +1668,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-02-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Sonnet 4.6 is Anthropic's most capable Sonnet-class model yet, with frontier performance across coding, agents, and professional work."
-    },
-    {
-      "id": "anthropic/claude-sonnet-4.6:batch",
-      "name": "Claude Sonnet 4.6 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 1.5,
-      "outputPrice": 7.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-02-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Sonnet 4.6 is Anthropic's most capable Sonnet-class model yet, with frontier performance across coding, agents, and professional work."
+      "description": "Sonnet 4.6 is Anthropic's most capable Sonnet-class model yet, with frontier performance across coding, agents, and professional work.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-sonnet-4.6:batch",
+          "inputPrice": 1.5,
+          "outputPrice": 7.5
+        }
+      ]
     },
     {
       "id": "qwen/qwen3.5-397b-a17b",
@@ -2079,7 +1688,6 @@
       "maxOutputTokens": 81920,
       "created": "2026-02-16",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 series 397B-A17B native vision-language model is built on a hybrid architecture that integrates a linear attention mechanism with a sparse mixture-of-experts model, ac…"
     },
     {
@@ -2092,7 +1700,6 @@
       "maxOutputTokens": 65536,
       "created": "2026-02-16",
       "modality": "text+image+video->text",
-      "hasFreeVariant": false,
       "description": "The Qwen3.5 native vision-language series Plus models are built on a hybrid architecture that integrates linear attention mechanisms with sparse mixture-of-experts models, achievi…"
     },
     {
@@ -2105,21 +1712,15 @@
       "maxOutputTokens": 128000,
       "created": "2026-02-05",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Opus 4.6 is Anthropic’s strongest model for coding and long-running professional tasks."
-    },
-    {
-      "id": "anthropic/claude-opus-4.6:batch",
-      "name": "Claude Opus 4.6 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2.5,
-      "outputPrice": 12.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 128000,
-      "created": "2026-02-05",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Opus 4.6 is Anthropic’s strongest model for coding and long-running professional tasks."
+      "description": "Opus 4.6 is Anthropic’s strongest model for coding and long-running professional tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-4.6:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 12.5
+        }
+      ]
     },
     {
       "id": "qwen/qwen3-coder-next",
@@ -2131,7 +1732,6 @@
       "maxOutputTokens": 235929,
       "created": "2026-02-04",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-Coder-Next is an open-weight causal language model optimized for coding agents and local development workflows."
     },
     {
@@ -2144,7 +1744,6 @@
       "maxOutputTokens": 16384,
       "created": "2026-01-20",
       "modality": "text+audio->text+audio",
-      "hasFreeVariant": false,
       "description": "The gpt-audio model is OpenAI's first generally available audio model."
     },
     {
@@ -2157,7 +1756,6 @@
       "maxOutputTokens": 16384,
       "created": "2026-01-20",
       "modality": "text+audio->text+audio",
-      "hasFreeVariant": false,
       "description": "A cost-efficient version of GPT Audio."
     },
     {
@@ -2170,7 +1768,6 @@
       "maxOutputTokens": 128000,
       "created": "2026-01-15",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.2-Codex is an upgraded version of GPT-5.1-Codex optimized for software engineering and coding workflows."
     },
     {
@@ -2183,21 +1780,15 @@
       "maxOutputTokens": 65536,
       "created": "2025-12-18",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3 Flash Preview is a high speed, high value thinking model designed for agentic workflows, multi turn chat, and coding assistance."
-    },
-    {
-      "id": "google/gemini-3-flash-preview:batch",
-      "name": "Gemini 3 Flash Preview (batch)",
-      "provider": "Google",
-      "inputPrice": 0.25,
-      "outputPrice": 1.5,
-      "contextLength": 1048576,
-      "maxOutputTokens": 65536,
-      "created": "2025-12-18",
-      "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
-      "description": "Gemini 3 Flash Preview is a high speed, high value thinking model designed for agentic workflows, multi turn chat, and coding assistance."
+      "description": "Gemini 3 Flash Preview is a high speed, high value thinking model designed for agentic workflows, multi turn chat, and coding assistance.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "google/gemini-3-flash-preview:batch",
+          "inputPrice": 0.25,
+          "outputPrice": 1.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.2",
@@ -2209,8 +1800,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-12-11",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.2 is the latest frontier-grade model in the GPT-5 series, offering stronger agentic and long context perfomance compared to GPT-5.1."
+      "description": "GPT-5.2 is the latest frontier-grade model in the GPT-5 series, offering stronger agentic and long context perfomance compared to GPT-5.1.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.2:batch",
+          "inputPrice": 0.875,
+          "outputPrice": 7
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.2-chat",
@@ -2222,7 +1820,6 @@
       "maxOutputTokens": 32000,
       "created": "2025-12-11",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.2 Chat (AKA Instant) is the fast, lightweight member of the 5.2 family, optimized for low-latency chat while retaining strong general intelligence."
     },
     {
@@ -2235,34 +1832,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-12-11",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.2 Pro is OpenAI’s most advanced model, offering major improvements in agentic coding and long context performance over GPT-5 Pro."
-    },
-    {
-      "id": "openai/gpt-5.2-pro:batch",
-      "name": "GPT-5.2 Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 10.5,
-      "outputPrice": 84,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-12-11",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.2 Pro is OpenAI’s most advanced model, offering major improvements in agentic coding and long context performance over GPT-5 Pro."
-    },
-    {
-      "id": "openai/gpt-5.2:batch",
-      "name": "GPT-5.2 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.875,
-      "outputPrice": 7,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-12-11",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.2 is the latest frontier-grade model in the GPT-5 series, offering stronger agentic and long context perfomance compared to GPT-5.1."
+      "description": "GPT-5.2 Pro is OpenAI’s most advanced model, offering major improvements in agentic coding and long context performance over GPT-5 Pro.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.2-pro:batch",
+          "inputPrice": 10.5,
+          "outputPrice": 84
+        }
+      ]
     },
     {
       "id": "mistralai/devstral-2512",
@@ -2274,7 +1852,6 @@
       "maxOutputTokens": 209715,
       "created": "2025-12-09",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "Devstral 2 is a state-of-the-art open-source model by Mistral AI specializing in agentic coding."
     },
     {
@@ -2287,7 +1864,6 @@
       "maxOutputTokens": 128000,
       "created": "2025-12-05",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.1-Codex-Max is OpenAI’s latest agentic coding model, designed for long-running, high-context software development tasks."
     },
     {
@@ -2300,7 +1876,6 @@
       "maxOutputTokens": 209715,
       "created": "2025-12-02",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "The largest model in the Ministral 3 family, Ministral 3 14B offers frontier capabilities and performance comparable to its larger Mistral Small 3.2 24B counterpart."
     },
     {
@@ -2313,7 +1888,6 @@
       "maxOutputTokens": 104857,
       "created": "2025-12-02",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "The smallest model in the Ministral 3 family, Ministral 3 3B is a powerful, efficient tiny language model with vision capabilities."
     },
     {
@@ -2326,7 +1900,6 @@
       "maxOutputTokens": 209715,
       "created": "2025-12-02",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "A balanced model in the Ministral 3 family, Ministral 3 8B is a powerful, efficient tiny language model with vision capabilities."
     },
     {
@@ -2339,7 +1912,6 @@
       "maxOutputTokens": 209715,
       "created": "2025-12-02",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral Large 3 2512 is Mistral’s most capable model to date, featuring a sparse mixture-of-experts architecture with 41B active parameters (675B total), and released under the Ap…"
     },
     {
@@ -2352,7 +1924,6 @@
       "maxOutputTokens": 147456,
       "created": "2025-12-01",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek-V3.2 is a large language model designed to harmonize high computational efficiency with strong reasoning and agentic tool-use performance."
     },
     {
@@ -2365,21 +1936,15 @@
       "maxOutputTokens": 64000,
       "created": "2025-11-25",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.5 is Anthropic’s frontier reasoning model optimized for complex software engineering, agentic workflows, and long-horizon computer use."
-    },
-    {
-      "id": "anthropic/claude-opus-4.5:batch",
-      "name": "Claude Opus 4.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 2.5,
-      "outputPrice": 12.5,
-      "contextLength": 200000,
-      "maxOutputTokens": 64000,
-      "created": "2025-11-25",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.5 is Anthropic’s frontier reasoning model optimized for complex software engineering, agentic workflows, and long-horizon computer use."
+      "description": "Claude Opus 4.5 is Anthropic’s frontier reasoning model optimized for complex software engineering, agentic workflows, and long-horizon computer use.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-4.5:batch",
+          "inputPrice": 2.5,
+          "outputPrice": 12.5
+        }
+      ]
     },
     {
       "id": "google/gemini-3-pro-image-preview",
@@ -2391,7 +1956,6 @@
       "maxOutputTokens": 32768,
       "created": "2025-11-21",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Nano Banana Pro is Google’s most advanced image-generation and editing model, built on Gemini 3 Pro."
     },
     {
@@ -2404,8 +1968,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-11-14",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.1 is the latest frontier-grade model in the GPT-5 series, offering stronger general-purpose reasoning, improved instruction adherence, and a more natural conversational styl…"
+      "description": "GPT-5.1 is the latest frontier-grade model in the GPT-5 series, offering stronger general-purpose reasoning, improved instruction adherence, and a more natural conversational styl…",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5.1:batch",
+          "inputPrice": 0.625,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-5.1-codex",
@@ -2417,7 +1988,6 @@
       "maxOutputTokens": 128000,
       "created": "2025-11-14",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.1-Codex is a specialized version of GPT-5.1 optimized for software engineering and coding workflows."
     },
     {
@@ -2430,21 +2000,7 @@
       "maxOutputTokens": 128000,
       "created": "2025-11-14",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "GPT-5.1-Codex-Mini is a smaller and faster version of GPT-5.1-Codex"
-    },
-    {
-      "id": "openai/gpt-5.1:batch",
-      "name": "GPT-5.1 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.625,
-      "outputPrice": 5,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-11-14",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5.1 is the latest frontier-grade model in the GPT-5 series, offering stronger general-purpose reasoning, improved instruction adherence, and a more natural conversational styl…"
     },
     {
       "id": "mistralai/voxtral-small-24b-2507",
@@ -2456,7 +2012,6 @@
       "maxOutputTokens": 26214,
       "created": "2025-10-30",
       "modality": "text+file+audio->text",
-      "hasFreeVariant": false,
       "description": "Voxtral Small is an enhancement of Mistral Small 3, incorporating state-of-the-art audio input capabilities while retaining best-in-class text performance."
     },
     {
@@ -2469,7 +2024,6 @@
       "maxOutputTokens": 65536,
       "created": "2025-10-30",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "gpt-oss-safeguard-20b is a safety reasoning model from OpenAI built upon gpt-oss-20b."
     },
     {
@@ -2482,21 +2036,15 @@
       "maxOutputTokens": 64000,
       "created": "2025-10-16",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Haiku 4.5 is Anthropic’s fastest and most efficient model, delivering near-frontier intelligence at a fraction of the cost and latency of larger Claude models."
-    },
-    {
-      "id": "anthropic/claude-haiku-4.5:batch",
-      "name": "Claude Haiku 4.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 0.5,
-      "outputPrice": 2.5,
-      "contextLength": 200000,
-      "maxOutputTokens": 64000,
-      "created": "2025-10-16",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Haiku 4.5 is Anthropic’s fastest and most efficient model, delivering near-frontier intelligence at a fraction of the cost and latency of larger Claude models."
+      "description": "Claude Haiku 4.5 is Anthropic’s fastest and most efficient model, delivering near-frontier intelligence at a fraction of the cost and latency of larger Claude models.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-haiku-4.5:batch",
+          "inputPrice": 0.5,
+          "outputPrice": 2.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-5-image-mini",
@@ -2508,7 +2056,6 @@
       "maxOutputTokens": 128000,
       "created": "2025-10-16",
       "modality": "text+image+file->text+image",
-      "hasFreeVariant": false,
       "description": "GPT-5 Image Mini combines OpenAI's advanced language capabilities, powered by GPT-5 Mini, with GPT Image 1 Mini for efficient image generation."
     },
     {
@@ -2521,7 +2068,6 @@
       "maxOutputTokens": 235929,
       "created": "2025-10-15",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-VL-8B-Instruct is a multimodal vision-language model from the Qwen3-VL series, built for high-fidelity understanding and reasoning across text, images, and video."
     },
     {
@@ -2534,7 +2080,6 @@
       "maxOutputTokens": 128000,
       "created": "2025-10-14",
       "modality": "text+image+file->text+image",
-      "hasFreeVariant": false,
       "description": "GPT-5 Image combines OpenAI's GPT-5 model with state-of-the-art image generation capabilities."
     },
     {
@@ -2547,7 +2092,6 @@
       "maxOutputTokens": 8192,
       "created": "2025-10-08",
       "modality": "text+image->text+image",
-      "hasFreeVariant": false,
       "description": "Gemini 2.5 Flash Image, a.k.a."
     },
     {
@@ -2560,21 +2104,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-10-07",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 Pro is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience."
-    },
-    {
-      "id": "openai/gpt-5-pro:batch",
-      "name": "GPT-5 Pro (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 7.5,
-      "outputPrice": 60,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-10-07",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 Pro is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience."
+      "description": "GPT-5 Pro is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5-pro:batch",
+          "inputPrice": 7.5,
+          "outputPrice": 60
+        }
+      ]
     },
     {
       "id": "qwen/qwen3-vl-30b-a3b-instruct",
@@ -2586,7 +2124,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-10-07",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-VL-30B-A3B-Instruct is a multimodal model that unifies strong text generation with visual understanding for images and videos."
     },
     {
@@ -2599,21 +2136,15 @@
       "maxOutputTokens": 64000,
       "created": "2025-09-30",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Sonnet 4.5 is Anthropic’s most advanced Sonnet model to date, optimized for real-world agents and coding workflows."
-    },
-    {
-      "id": "anthropic/claude-sonnet-4.5:batch",
-      "name": "Claude Sonnet 4.5 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 1.5,
-      "outputPrice": 7.5,
-      "contextLength": 1000000,
-      "maxOutputTokens": 64000,
-      "created": "2025-09-30",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Sonnet 4.5 is Anthropic’s most advanced Sonnet model to date, optimized for real-world agents and coding workflows."
+      "description": "Claude Sonnet 4.5 is Anthropic’s most advanced Sonnet model to date, optimized for real-world agents and coding workflows.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-sonnet-4.5:batch",
+          "inputPrice": 1.5,
+          "outputPrice": 7.5
+        }
+      ]
     },
     {
       "id": "deepseek/deepseek-v3.2-exp",
@@ -2625,7 +2156,6 @@
       "maxOutputTokens": 147456,
       "created": "2025-09-29",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek-V3.2-Exp is an experimental large language model released by DeepSeek as an intermediate step between V3.1 and future architectures."
     },
     {
@@ -2638,7 +2168,6 @@
       "maxOutputTokens": 32768,
       "created": "2025-09-24",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-VL-235B-A22B Instruct is an open-weight multimodal model that unifies strong text generation with visual understanding across images and video."
     },
     {
@@ -2651,7 +2180,6 @@
       "maxOutputTokens": 147456,
       "created": "2025-09-22",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek-V3.1 Terminus is an update to DeepSeek V3.1 that maintains the model's original capabilities while addressing issues reported by users, including language consistency and…"
     },
     {
@@ -2664,7 +2192,6 @@
       "maxOutputTokens": 65536,
       "created": "2025-09-17",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3 Coder Flash is Alibaba's fast and cost efficient version of their proprietary Qwen3 Coder Plus."
     },
     {
@@ -2677,7 +2204,6 @@
       "maxOutputTokens": 235929,
       "created": "2025-09-12",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-Next-80B-A3B-Instruct is an instruction-tuned chat model in the Qwen3-Next series optimized for fast, stable responses without “thinking” traces."
     },
     {
@@ -2690,7 +2216,6 @@
       "maxOutputTokens": 147456,
       "created": "2025-08-21",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek-V3.1 is a large hybrid reasoning model (671B parameters, 37B active) that supports both thinking and non-thinking modes via prompt templates."
     },
     {
@@ -2703,7 +2228,6 @@
       "maxOutputTokens": 104857,
       "created": "2025-08-13",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral Medium 3.1 is an updated version of Mistral Medium 3, which is a high-performance enterprise-grade language model designed to deliver frontier-level capabilities at signif…"
     },
     {
@@ -2716,8 +2240,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-08-08",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience."
+      "description": "GPT-5 is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5:batch",
+          "inputPrice": 0.625,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-5-mini",
@@ -2729,21 +2260,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-08-08",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 Mini is a compact version of GPT-5, designed to handle lighter-weight reasoning tasks."
-    },
-    {
-      "id": "openai/gpt-5-mini:batch",
-      "name": "GPT-5 Mini (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.125,
-      "outputPrice": 1,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-08-08",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 Mini is a compact version of GPT-5, designed to handle lighter-weight reasoning tasks."
+      "description": "GPT-5 Mini is a compact version of GPT-5, designed to handle lighter-weight reasoning tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5-mini:batch",
+          "inputPrice": 0.125,
+          "outputPrice": 1
+        }
+      ]
     },
     {
       "id": "openai/gpt-5-nano",
@@ -2755,34 +2280,15 @@
       "maxOutputTokens": 128000,
       "created": "2025-08-08",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5-Nano is the smallest and fastest variant in the GPT-5 system, optimized for developer tools, rapid interactions, and ultra-low latency environments."
-    },
-    {
-      "id": "openai/gpt-5-nano:batch",
-      "name": "GPT-5 Nano (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.025,
-      "outputPrice": 0.2,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-08-08",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5-Nano is the smallest and fastest variant in the GPT-5 system, optimized for developer tools, rapid interactions, and ultra-low latency environments."
-    },
-    {
-      "id": "openai/gpt-5:batch",
-      "name": "GPT-5 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.625,
-      "outputPrice": 5,
-      "contextLength": 400000,
-      "maxOutputTokens": 128000,
-      "created": "2025-08-08",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-5 is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience."
+      "description": "GPT-5-Nano is the smallest and fastest variant in the GPT-5 system, optimized for developer tools, rapid interactions, and ultra-low latency environments.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-5-nano:batch",
+          "inputPrice": 0.025,
+          "outputPrice": 0.2
+        }
+      ]
     },
     {
       "id": "anthropic/claude-opus-4.1",
@@ -2794,21 +2300,15 @@
       "maxOutputTokens": 32000,
       "created": "2025-08-06",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.1 is an updated version of Anthropic’s flagship model, offering improved performance in coding, reasoning, and agentic tasks."
-    },
-    {
-      "id": "anthropic/claude-opus-4.1:batch",
-      "name": "Claude Opus 4.1 (batch)",
-      "provider": "Anthropic",
-      "inputPrice": 7.5,
-      "outputPrice": 37.5,
-      "contextLength": 200000,
-      "maxOutputTokens": 32000,
-      "created": "2025-08-06",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "Claude Opus 4.1 is an updated version of Anthropic’s flagship model, offering improved performance in coding, reasoning, and agentic tasks."
+      "description": "Claude Opus 4.1 is an updated version of Anthropic’s flagship model, offering improved performance in coding, reasoning, and agentic tasks.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "anthropic/claude-opus-4.1:batch",
+          "inputPrice": 7.5,
+          "outputPrice": 37.5
+        }
+      ]
     },
     {
       "id": "openai/gpt-oss-120b",
@@ -2820,21 +2320,15 @@
       "maxOutputTokens": 117964,
       "created": "2025-08-06",
       "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "gpt-oss-120b is an open-weight, 117B-parameter Mixture-of-Experts (MoE) language model from OpenAI designed for high-reasoning, agentic, and general-purpose production use cases."
-    },
-    {
-      "id": "openai/gpt-oss-120b:batch",
-      "name": "gpt-oss-120b (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.0296,
-      "outputPrice": 0.136,
-      "contextLength": 131072,
-      "maxOutputTokens": 117964,
-      "created": "2025-08-06",
-      "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "gpt-oss-120b is an open-weight, 117B-parameter Mixture-of-Experts (MoE) language model from OpenAI designed for high-reasoning, agentic, and general-purpose production use cases."
+      "description": "gpt-oss-120b is an open-weight, 117B-parameter Mixture-of-Experts (MoE) language model from OpenAI designed for high-reasoning, agentic, and general-purpose production use cases.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-oss-120b:batch",
+          "inputPrice": 0.0296,
+          "outputPrice": 0.136
+        }
+      ]
     },
     {
       "id": "openai/gpt-oss-20b",
@@ -2846,21 +2340,15 @@
       "maxOutputTokens": 117964,
       "created": "2025-08-06",
       "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "gpt-oss-20b is an open-weight 21B parameter model released by OpenAI under the Apache 2.0 license."
-    },
-    {
-      "id": "openai/gpt-oss-20b:batch",
-      "name": "gpt-oss-20b (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.024,
-      "outputPrice": 0.112,
-      "contextLength": 131072,
-      "maxOutputTokens": 117964,
-      "created": "2025-08-06",
-      "modality": "text->text",
-      "hasFreeVariant": false,
-      "description": "gpt-oss-20b is an open-weight 21B parameter model released by OpenAI under the Apache 2.0 license."
+      "description": "gpt-oss-20b is an open-weight 21B parameter model released by OpenAI under the Apache 2.0 license.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-oss-20b:batch",
+          "inputPrice": 0.024,
+          "outputPrice": 0.112
+        }
+      ]
     },
     {
       "id": "mistralai/codestral-2508",
@@ -2872,7 +2360,6 @@
       "maxOutputTokens": 204800,
       "created": "2025-08-02",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral's cutting-edge language model for coding released end of July 2025."
     },
     {
@@ -2885,7 +2372,6 @@
       "maxOutputTokens": 235929,
       "created": "2025-07-31",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-Coder-30B-A3B-Instruct is a 30.5B parameter Mixture-of-Experts (MoE) model with 128 experts (8 active per forward pass), designed for advanced code generation, repository-sc…"
     },
     {
@@ -2898,7 +2384,6 @@
       "maxOutputTokens": 235929,
       "created": "2025-07-30",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-30B-A3B-Instruct-2507 is a 30.5B-parameter mixture-of-experts language model from Qwen, with 3.3B active parameters per inference."
     },
     {
@@ -2911,7 +2396,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-07-25",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-235B-A22B-Thinking-2507 is a high-performance, open-weight Mixture-of-Experts (MoE) language model optimized for complex reasoning tasks."
     },
     {
@@ -2924,7 +2408,6 @@
       "maxOutputTokens": 65535,
       "created": "2025-07-23",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Gemini 2.5 Flash-Lite is a lightweight reasoning model in the Gemini 2.5 family, optimized for ultra-low latency and cost efficiency."
     },
     {
@@ -2937,7 +2420,6 @@
       "maxOutputTokens": 65536,
       "created": "2025-07-23",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-Coder-480B-A35B-Instruct is a Mixture-of-Experts (MoE) code generation model developed by the Qwen team."
     },
     {
@@ -2950,7 +2432,6 @@
       "maxOutputTokens": 117964,
       "created": "2025-07-22",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-235B-A22B-Instruct-2507 is a multilingual, instruction-tuned mixture-of-experts language model based on the Qwen3-235B architecture, with 22B active parameters per forward p…"
     },
     {
@@ -2963,7 +2444,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-06-21",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Mistral-Small-3.2-24B-Instruct-2506 is an updated 24B parameter model from Mistral optimized for instruction following, repetition reduction, and improved function calling."
     },
     {
@@ -2976,7 +2456,6 @@
       "maxOutputTokens": 65535,
       "created": "2025-06-18",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Gemini 2.5 Flash is Google's state-of-the-art workhorse model, specifically designed for advanced reasoning, coding, mathematics, and scientific tasks."
     },
     {
@@ -2989,7 +2468,6 @@
       "maxOutputTokens": 65536,
       "created": "2025-06-17",
       "modality": "text+image+file+audio+video->text",
-      "hasFreeVariant": false,
       "description": "Gemini 2.5 Pro is Google’s state-of-the-art AI model designed for advanced reasoning, coding, mathematics, and scientific tasks."
     },
     {
@@ -3002,7 +2480,6 @@
       "maxOutputTokens": 100000,
       "created": "2025-06-11",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "The o-series of models are trained with reinforcement learning to think before they answer and perform complex reasoning."
     },
     {
@@ -3015,7 +2492,6 @@
       "maxOutputTokens": 65536,
       "created": "2025-06-06",
       "modality": "text+image+file+audio->text",
-      "hasFreeVariant": false,
       "description": "Gemini 2.5 Pro is Google’s state-of-the-art AI model designed for advanced reasoning, coding, mathematics, and scientific tasks."
     },
     {
@@ -3028,7 +2504,6 @@
       "maxOutputTokens": 32000,
       "created": "2025-05-29",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "May 28th update to the original DeepSeek R1 Performance on par with OpenAI o1, but open-sourced and with fully open reasoning tokens."
     },
     {
@@ -3041,7 +2516,6 @@
       "maxOutputTokens": 104857,
       "created": "2025-05-07",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral Medium 3 is a high-performance enterprise-grade language model designed to deliver frontier-level capabilities at significantly reduced operational cost."
     },
     {
@@ -3054,7 +2528,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-04-30",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Llama Guard 4 is a Llama 4 Scout-derived multimodal pretrained model, fine-tuned for content safety classification."
     },
     {
@@ -3067,7 +2540,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-04-29",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-14B is a dense 14.8B parameter causal language model from the Qwen3 series, designed for both complex reasoning and efficient dialogue."
     },
     {
@@ -3080,7 +2552,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-04-29",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3, the latest generation in the Qwen large language model series, features both dense and mixture-of-experts (MoE) architectures to excel in reasoning, multilingual support, a…"
     },
     {
@@ -3093,7 +2564,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-04-29",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen3-32B is a dense 32.8B parameter causal language model from the Qwen3 series, optimized for both complex reasoning and efficient dialogue."
     },
     {
@@ -3106,21 +2576,15 @@
       "maxOutputTokens": 100000,
       "created": "2025-04-17",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "o3 is a well-rounded and powerful model across domains."
-    },
-    {
-      "id": "openai/o3:batch",
-      "name": "o3 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 4,
-      "contextLength": 200000,
-      "maxOutputTokens": 100000,
-      "created": "2025-04-17",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "o3 is a well-rounded and powerful model across domains."
+      "description": "o3 is a well-rounded and powerful model across domains.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/o3:batch",
+          "inputPrice": 1,
+          "outputPrice": 4
+        }
+      ]
     },
     {
       "id": "openai/o4-mini:batch",
@@ -3132,7 +2596,6 @@
       "maxOutputTokens": 100000,
       "created": "2025-04-17",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining strong multimodal and agentic capabilities."
     },
     {
@@ -3145,8 +2608,15 @@
       "maxOutputTokens": 32768,
       "created": "2025-04-15",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning."
+      "description": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-4.1:batch",
+          "inputPrice": 1,
+          "outputPrice": 4
+        }
+      ]
     },
     {
       "id": "openai/gpt-4.1-mini",
@@ -3158,21 +2628,15 @@
       "maxOutputTokens": 32768,
       "created": "2025-04-15",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4.1 Mini is a mid-sized model delivering performance competitive with GPT-4o at substantially lower latency and cost."
-    },
-    {
-      "id": "openai/gpt-4.1-mini:batch",
-      "name": "GPT-4.1 Mini (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.2,
-      "outputPrice": 0.8,
-      "contextLength": 1047576,
-      "maxOutputTokens": 32768,
-      "created": "2025-04-15",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4.1 Mini is a mid-sized model delivering performance competitive with GPT-4o at substantially lower latency and cost."
+      "description": "GPT-4.1 Mini is a mid-sized model delivering performance competitive with GPT-4o at substantially lower latency and cost.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-4.1-mini:batch",
+          "inputPrice": 0.2,
+          "outputPrice": 0.8
+        }
+      ]
     },
     {
       "id": "openai/gpt-4.1-nano",
@@ -3184,34 +2648,15 @@
       "maxOutputTokens": 942818,
       "created": "2025-04-15",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "For tasks that demand low latency, GPT‑4.1 nano is the fastest and cheapest model in the GPT-4.1 series."
-    },
-    {
-      "id": "openai/gpt-4.1-nano:batch",
-      "name": "GPT-4.1 Nano (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.05,
-      "outputPrice": 0.2,
-      "contextLength": 1047576,
-      "maxOutputTokens": 32768,
-      "created": "2025-04-15",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "For tasks that demand low latency, GPT‑4.1 nano is the fastest and cheapest model in the GPT-4.1 series."
-    },
-    {
-      "id": "openai/gpt-4.1:batch",
-      "name": "GPT-4.1 (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1,
-      "outputPrice": 4,
-      "contextLength": 1047576,
-      "maxOutputTokens": 32768,
-      "created": "2025-04-15",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning."
+      "description": "For tasks that demand low latency, GPT‑4.1 nano is the fastest and cheapest model in the GPT-4.1 series.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-4.1-nano:batch",
+          "inputPrice": 0.05,
+          "outputPrice": 0.2
+        }
+      ]
     },
     {
       "id": "meta-llama/llama-4-maverick",
@@ -3223,7 +2668,6 @@
       "maxOutputTokens": 32768,
       "created": "2025-04-06",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Llama 4 Maverick 17B Instruct (128E) is a high-capacity multimodal language model from Meta, built on a mixture-of-experts (MoE) architecture with 128 experts and 17 billion activ…"
     },
     {
@@ -3236,7 +2680,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-04-06",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Llama 4 Scout 17B Instruct (16E) is a mixture-of-experts (MoE) language model developed by Meta, activating 17 billion parameters out of a total of 109B."
     },
     {
@@ -3249,7 +2692,6 @@
       "maxOutputTokens": 115200,
       "created": "2025-03-24",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek V3, a 685B-parameter, mixture-of-experts model, is the latest iteration of the flagship chat model family from the DeepSeek team."
     },
     {
@@ -3262,7 +2704,6 @@
       "maxOutputTokens": 102400,
       "created": "2025-03-18",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Mistral Small 3.1 24B Instruct is an upgraded variant of Mistral Small 3 (2501), featuring 24 billion parameters with advanced multimodal capabilities."
     },
     {
@@ -3275,7 +2716,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-03-14",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs."
     },
     {
@@ -3288,7 +2728,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-03-14",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs."
     },
     {
@@ -3301,7 +2740,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-03-12",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs."
     },
     {
@@ -3314,7 +2752,6 @@
       "maxOutputTokens": 26214,
       "created": "2025-02-17",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral Saba is a 24B-parameter language model specifically designed for the Middle East and South Asia, delivering accurate and contextually relevant responses while maintaining…"
     },
     {
@@ -3327,7 +2764,6 @@
       "maxOutputTokens": 100000,
       "created": "2025-02-01",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "OpenAI o3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding."
     },
     {
@@ -3340,7 +2776,6 @@
       "maxOutputTokens": 32768,
       "created": "2025-02-01",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen-Plus, based on the Qwen2.5 foundation model, is a 131K context model with a balanced performance, speed, and cost combination."
     },
     {
@@ -3353,7 +2788,6 @@
       "maxOutputTokens": 115200,
       "created": "2025-02-01",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "Qwen2.5-VL is proficient in recognizing common objects such as flowers, birds, fish, and insects."
     },
     {
@@ -3366,7 +2800,6 @@
       "maxOutputTokens": 16384,
       "created": "2025-01-31",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Mistral Small 3 is a 24B-parameter language model optimized for low-latency performance across common AI tasks."
     },
     {
@@ -3379,7 +2812,6 @@
       "maxOutputTokens": 16000,
       "created": "2024-12-27",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "DeepSeek-V3 is the latest model from the DeepSeek team, building upon the instruction following and coding abilities of the previous versions."
     },
     {
@@ -3392,7 +2824,6 @@
       "maxOutputTokens": 115200,
       "created": "2024-12-07",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "The Meta Llama 3.3 multilingual large language model (LLM) is a pretrained and instruction tuned generative model in 70B (text in/text out)."
     },
     {
@@ -3405,7 +2836,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-11-21",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "The 2024-11-20 version of GPT-4o offers a leveled-up creative writing ability with more natural, engaging, and tailored writing to improve relevance & readability."
     },
     {
@@ -3418,7 +2848,6 @@
       "maxOutputTokens": 104857,
       "created": "2024-11-19",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "This is Mistral AI's flagship model, Mistral Large 2 (version mistral-large-2407)."
     },
     {
@@ -3431,7 +2860,6 @@
       "maxOutputTokens": 29491,
       "created": "2024-11-12",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen2.5-Coder is the latest series of Code-Specific Qwen large language models (formerly known as CodeQwen)."
     },
     {
@@ -3444,7 +2872,6 @@
       "maxOutputTokens": 117964,
       "created": "2024-09-25",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Llama 3.2 3B is a 3-billion-parameter multilingual large language model, optimized for advanced natural language processing tasks like dialogue generation, reasoning, and summariz…"
     },
     {
@@ -3457,7 +2884,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-09-19",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Qwen2.5 72B is the latest series of Qwen large language models."
     },
     {
@@ -3470,7 +2896,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-08-06",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "The 2024-08-06 version of GPT-4o offers improved performance in structured outputs, with the ability to supply a JSON schema in the responeformat."
     },
     {
@@ -3483,7 +2908,6 @@
       "maxOutputTokens": 8192,
       "created": "2024-07-23",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors."
     },
     {
@@ -3496,7 +2920,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-07-23",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors."
     },
     {
@@ -3509,7 +2932,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-07-19",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "A 12B parameter model with a 128k token context length built by Mistral in collaboration with NVIDIA."
     },
     {
@@ -3522,8 +2944,15 @@
       "maxOutputTokens": 16384,
       "created": "2024-07-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4o mini is OpenAI's newest model after GPT-4 Omni, supporting both text and image inputs with text outputs."
+      "description": "GPT-4o mini is OpenAI's newest model after GPT-4 Omni, supporting both text and image inputs with text outputs.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-4o-mini:batch",
+          "inputPrice": 0.075,
+          "outputPrice": 0.3
+        }
+      ]
     },
     {
       "id": "openai/gpt-4o-mini-2024-07-18",
@@ -3535,20 +2964,6 @@
       "maxOutputTokens": 16384,
       "created": "2024-07-18",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4o mini is OpenAI's newest model after GPT-4 Omni, supporting both text and image inputs with text outputs."
-    },
-    {
-      "id": "openai/gpt-4o-mini:batch",
-      "name": "GPT-4o-mini (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 0.075,
-      "outputPrice": 0.3,
-      "contextLength": 128000,
-      "maxOutputTokens": 16384,
-      "created": "2024-07-18",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "GPT-4o mini is OpenAI's newest model after GPT-4 Omni, supporting both text and image inputs with text outputs."
     },
     {
@@ -3561,7 +2976,6 @@
       "maxOutputTokens": 2048,
       "created": "2024-07-13",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "Gemma 2 27B by Google is an open model built from the same research and technology used to create the Gemini models."
     },
     {
@@ -3574,8 +2988,15 @@
       "maxOutputTokens": 16384,
       "created": "2024-05-13",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs."
+      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs.",
+      "variants": [
+        {
+          "type": "batch",
+          "id": "openai/gpt-4o:batch",
+          "inputPrice": 1.25,
+          "outputPrice": 5
+        }
+      ]
     },
     {
       "id": "openai/gpt-4o-2024-05-13",
@@ -3587,20 +3008,6 @@
       "maxOutputTokens": 4096,
       "created": "2024-05-13",
       "modality": "text+image+file->text",
-      "hasFreeVariant": false,
-      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs."
-    },
-    {
-      "id": "openai/gpt-4o:batch",
-      "name": "GPT-4o (batch)",
-      "provider": "OpenAI",
-      "inputPrice": 1.25,
-      "outputPrice": 5,
-      "contextLength": 128000,
-      "maxOutputTokens": 16384,
-      "created": "2024-05-13",
-      "modality": "text+image+file->text",
-      "hasFreeVariant": false,
       "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs."
     },
     {
@@ -3613,7 +3020,6 @@
       "maxOutputTokens": 52428,
       "created": "2024-04-17",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "Mistral's official instruct fine-tuned version of Mixtral 8x22B."
     },
     {
@@ -3626,7 +3032,6 @@
       "maxOutputTokens": 4096,
       "created": "2024-04-09",
       "modality": "text+image->text",
-      "hasFreeVariant": false,
       "description": "The latest GPT-4 Turbo model with vision capabilities."
     },
     {
@@ -3639,7 +3044,6 @@
       "maxOutputTokens": 102400,
       "created": "2024-02-26",
       "modality": "text+file->text",
-      "hasFreeVariant": false,
       "description": "This is Mistral AI's flagship model, Mistral Large 2 (version mistral-large-2407)."
     },
     {
@@ -3652,7 +3056,6 @@
       "maxOutputTokens": 3685,
       "created": "2024-01-25",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "GPT-3.5 Turbo is OpenAI's fastest model."
     },
     {
@@ -3665,7 +3068,6 @@
       "maxOutputTokens": 4096,
       "created": "2023-08-28",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "This model offers four times the context length of gpt-3.5-turbo, allowing it to support approximately 20 pages of text in a single request at a higher cost."
     },
     {
@@ -3678,7 +3080,6 @@
       "maxOutputTokens": 4096,
       "created": "2023-05-28",
       "modality": "text->text",
-      "hasFreeVariant": false,
       "description": "OpenAI's flagship model, GPT-4 is a large-scale multimodal language model capable of solving difficult problems with greater accuracy than previous models due to its broader gener…"
     }
   ]

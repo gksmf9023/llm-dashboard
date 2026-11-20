@@ -2,7 +2,9 @@
 (function () {
   'use strict';
 
+  // 고정 순서 = 제공사 식별색 순서 (필터가 바뀌어도 색이 바뀌지 않음)
   var PROVIDER_ORDER = ['OpenAI', 'Anthropic', 'Google', 'Meta', 'xAI', 'DeepSeek', 'Mistral', 'Qwen (Alibaba)'];
+  var VARIANT_LABEL = { batch: 'Batch', free: '무료', extended: '확장', thinking: 'Thinking', beta: 'Beta', nitro: 'Nitro', floor: 'Floor', online: 'Online' };
   var LATEST_COUNT = 8;
   var PAGE_SIZE = window.matchMedia && matchMedia('(max-width: 720px)').matches ? 20 : 60;
   var NEW_DAYS = 30;
@@ -16,6 +18,7 @@
     search: '',
     provider: '',
     limit: PAGE_SIZE,
+    chartPer: 2,
     chart: null,
   };
 
@@ -48,6 +51,24 @@
     return (Date.now() - new Date(dateStr + 'T00:00:00+09:00').getTime()) / 86400000;
   }
   function providerHtml(p) { return '<span class="provider" data-p="' + esc(p) + '">' + esc(p) + '</span>'; }
+  function byNewest(a, b) { return String(b.created || '').localeCompare(String(a.created || '')); }
+
+  /* ---------- 변형(batch 등) ---------- */
+  function variantLabel(v) { return VARIANT_LABEL[v.type] || v.type; }
+  function variantBadges(m) {
+    return (m.variants || []).map(function (v) {
+      var label = variantLabel(v);
+      var off = m.outputPrice > 0 && v.outputPrice > 0 ? Math.round((1 - v.outputPrice / m.outputPrice) * 100) : 0;
+      var text = v.type === 'free' ? '무료 버전' : label + (off > 0 ? ' −' + off + '%' : '');
+      var title = label + ' 변형 (' + v.id + '): 입력 ' + fmtPrice(v.inputPrice) + ' / 출력 ' + fmtPrice(v.outputPrice) + ' per 1M';
+      return '<span class="badge badge-variant" title="' + esc(title) + '">' + esc(text) + '</span>';
+    }).join('');
+  }
+  function variantPriceLine(m, field) {
+    var v = (m.variants || []).filter(function (x) { return x.type !== 'free'; })[0];
+    if (!v) return '';
+    return '<span class="price-sub">' + esc(variantLabel(v)) + ' ' + fmtPrice(v[field]) + '</span>';
+  }
 
   /* ---------- 데이터 로드 ---------- */
   function loadJson(path) {
@@ -74,6 +95,8 @@
           el.hidden = false;
         }
         renderMeta();
+        renderKpis();
+        renderShare();
         renderLatest();
         setupTable();
         renderTable();
@@ -83,23 +106,21 @@
   }
 
   /* ---------- 테마 ---------- */
+  function systemDark() { return !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); }
   function effectiveTheme() {
-    var t = document.documentElement.getAttribute('data-theme');
-    if (t) return t;
-    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return document.documentElement.getAttribute('data-theme') || (systemDark() ? 'dark' : 'light');
   }
   function updateThemeButton() {
-    var dark = effectiveTheme() === 'dark';
-    $('theme-toggle').setAttribute('aria-label', dark ? '라이트 모드로 전환' : '다크 모드로 전환');
-    $('theme-toggle').title = dark ? '라이트 모드로 전환' : '다크 모드로 전환';
+    var label = effectiveTheme() === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환';
+    $('theme-toggle').setAttribute('aria-label', label);
+    $('theme-toggle').title = label;
   }
   function setupTheme() {
     updateThemeButton();
     $('theme-toggle').addEventListener('click', function () {
       var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-      var systemDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
       // 시스템 설정과 같아지면 강제값을 지우고 다시 시스템을 따름
-      if ((next === 'dark') === systemDark) {
+      if ((next === 'dark') === systemDark()) {
         document.documentElement.removeAttribute('data-theme');
         try { localStorage.removeItem('theme'); } catch (e) {}
       } else {
@@ -107,21 +128,20 @@
         try { localStorage.setItem('theme', next); } catch (e) {}
       }
       updateThemeButton();
-      renderChart();
+      renderChart(true);
     });
     if (window.matchMedia) {
       var mq = matchMedia('(prefers-color-scheme: dark)');
-      var onChange = function () { updateThemeButton(); renderChart(); };
+      var onChange = function () { updateThemeButton(); renderChart(true); };
       if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
     }
   }
 
-  /* ---------- (1) 메타 ---------- */
+  /* ---------- (1) 상단: 메타·지표·제공사 비중 ---------- */
   function renderMeta() {
     var m = state.meta;
     $('meta-updated').textContent = m && m.lastUpdatedKST ? m.lastUpdatedKST : '–';
     if (m && m.lastUpdated) $('meta-updated').setAttribute('title', m.lastUpdated);
-    $('meta-count').textContent = state.models.length ? fmtInt(state.models.length) + '개' : '–';
     var sources = (m && m.sources) || [];
     if (sources.length) {
       var html = sources.map(function (s) {
@@ -134,43 +154,87 @@
     $('sample-banner').hidden = !(m && m.isSample);
   }
 
+  function kpi(label, value, sub) {
+    return '<div class="kpi"><span class="kpi-label">' + esc(label) + '</span><span class="kpi-value">' + value + '</span>' +
+      (sub ? '<span class="kpi-sub" title="' + esc(sub) + '">' + esc(sub) + '</span>' : '') + '</div>';
+  }
+  function renderKpis() {
+    var ms = state.models;
+    if (!ms.length) return;
+    var providers = {};
+    ms.forEach(function (m) { providers[m.provider] = true; });
+    var recent = ms.filter(function (m) { return daysSince(m.created) <= NEW_DAYS; }).length;
+    var paid = ms.filter(function (m) { return m.inputPrice > 0; });
+    var cheapest = paid.slice().sort(function (a, b) { return a.inputPrice - b.inputPrice || byNewest(a, b); })[0];
+    var longest = ms.slice().sort(function (a, b) { return (b.contextLength || 0) - (a.contextLength || 0) || byNewest(a, b); })[0];
+    $('kpis').innerHTML =
+      kpi('추적 중인 모델', fmtInt(ms.length) + '<small>개</small>', Object.keys(providers).length + '개 제공사') +
+      kpi('최근 30일 신규', fmtInt(recent) + '<small>개</small>', '등록일 기준') +
+      kpi('최저 입력가 /1M', cheapest ? esc(fmtPrice(cheapest.inputPrice)) : '–', cheapest ? cheapest.name : '') +
+      kpi('최장 컨텍스트', longest ? esc(fmtCtxShort(longest.contextLength)) + '<small>토큰</small>' : '–', longest ? longest.name : '');
+  }
+
+  function orderedProviders() {
+    var list = PROVIDER_ORDER.filter(function (p) { return state.models.some(function (m) { return m.provider === p; }); });
+    state.models.forEach(function (m) { if (list.indexOf(m.provider) < 0) list.push(m.provider); });
+    return list;
+  }
+  function countBy(p) { return state.models.filter(function (m) { return m.provider === p; }).length; }
+
+  function renderShare() {
+    var total = state.models.length;
+    if (!total) return;
+    var ps = orderedProviders();
+    $('share-bar').innerHTML = ps.map(function (p) {
+      var n = countBy(p);
+      return '<span class="share-seg" data-p="' + esc(p) + '" style="flex:' + n + '" title="' + esc(p + ' ' + n + '개') + '"></span>';
+    }).join('');
+    $('share-bar').setAttribute('aria-label', '제공사별 모델 수: ' + ps.map(function (p) { return p + ' ' + countBy(p) + '개'; }).join(', '));
+    $('share-legend').innerHTML = ps.map(function (p) {
+      return '<li>' + providerHtml(p) + '<b>' + countBy(p) + '</b></li>';
+    }).join('');
+    $('share').hidden = false;
+  }
+
   /* ---------- (2) 최신 모델 ---------- */
   function renderLatest() {
-    var list = state.models.slice().sort(function (a, b) {
-      return String(b.created || '').localeCompare(String(a.created || ''));
-    }).slice(0, LATEST_COUNT);
+    var list = state.models.slice().sort(byNewest).slice(0, LATEST_COUNT);
     if (!list.length) { $('latest-cards').innerHTML = '<p class="muted">표시할 모델이 없습니다.</p>'; return; }
     $('latest-cards').innerHTML = list.map(function (m) {
       var isNew = daysSince(m.created) <= NEW_DAYS;
-      return '<article class="model-card">' +
-        '<div class="card-top">' + providerHtml(m.provider) +
-          (isNew ? '<span class="badge-new">NEW</span>' : '<span class="num">' + esc(m.created || '') + '</span>') +
+      var badges = (isNew ? '<span class="badge badge-new">NEW</span>' : '') + variantBadges(m);
+      return '<article class="model-card" data-p="' + esc(m.provider) + '">' +
+        '<div class="card-top">' +
+          '<span class="card-who"><span class="avatar" aria-hidden="true">' + esc(m.provider.charAt(0)) + '</span>' + esc(m.provider) + '</span>' +
+          '<span class="date">' + esc(m.created || '') + '</span>' +
         '</div>' +
-        '<div><h3>' + esc(m.name) + (m.hasFreeVariant ? '<span class="badge-free">무료 버전 있음</span>' : '') + '</h3>' +
-          '<div class="model-id">' + esc(m.id) + '</div></div>' +
+        '<div><h3>' + esc(m.name) + '</h3><div class="model-id">' + esc(m.id) + '</div></div>' +
+        (badges ? '<div class="badges">' + badges + '</div>' : '') +
         (m.description ? '<p class="desc" lang="en">' + esc(m.description) + '</p>' : '') +
         '<dl class="stats">' +
           '<div><dt>입력 /1M</dt><dd>' + fmtPrice(m.inputPrice) + '</dd></div>' +
           '<div><dt>출력 /1M</dt><dd>' + fmtPrice(m.outputPrice) + '</dd></div>' +
           '<div><dt>컨텍스트</dt><dd title="' + esc(fmtCtx(m.contextLength)) + ' 토큰">' + fmtCtxShort(m.contextLength) + '</dd></div>' +
         '</dl>' +
-        (isNew ? '<div class="muted num" style="font-size:.78rem">등록일 ' + esc(m.created) + '</div>' : '') +
       '</article>';
     }).join('');
   }
 
   /* ---------- (3) 가격 비교표 ---------- */
   function setupTable() {
-    var providers = PROVIDER_ORDER.filter(function (p) {
-      return state.models.some(function (m) { return m.provider === p; });
-    });
-    state.models.forEach(function (m) { if (providers.indexOf(m.provider) < 0) providers.push(m.provider); });
-    var sel = $('provider-filter');
-    providers.forEach(function (p) {
-      var n = state.models.filter(function (m) { return m.provider === p; }).length;
-      var o = document.createElement('option');
-      o.value = p; o.textContent = p + ' (' + n + ')';
-      sel.appendChild(o);
+    var chips = '<button type="button" class="chip" data-value="" aria-pressed="true">전체 <span class="count">' + fmtInt(state.models.length) + '</span></button>' +
+      orderedProviders().map(function (p) {
+        return '<button type="button" class="chip" data-p="' + esc(p) + '" data-value="' + esc(p) + '" aria-pressed="false">' +
+          esc(p) + ' <span class="count">' + countBy(p) + '</span></button>';
+      }).join('');
+    $('provider-chips').innerHTML = chips;
+    $('provider-chips').addEventListener('click', function (e) {
+      var btn = e.target.closest('.chip');
+      if (!btn) return;
+      state.provider = btn.getAttribute('data-value');
+      state.limit = PAGE_SIZE;
+      $('provider-chips').querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c === btn)); });
+      renderTable();
     });
 
     var timer;
@@ -178,7 +242,6 @@
       clearTimeout(timer);
       timer = setTimeout(function () { state.search = e.target.value.trim().toLowerCase(); state.limit = PAGE_SIZE; renderTable(); }, 120);
     });
-    sel.addEventListener('change', function (e) { state.provider = e.target.value; state.limit = PAGE_SIZE; renderTable(); });
 
     document.querySelectorAll('#price-table th[data-key] button').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -242,11 +305,10 @@
     $('price-tbody').innerHTML = shown.length ? shown.map(function (m) {
       return '<tr>' +
         '<td class="cell-provider span-2" data-label="제공사">' + providerHtml(m.provider) + '</td>' +
-        '<td class="cell-model span-2" data-label="모델명"><span class="name">' + esc(m.name) + '</span>' +
-          (m.hasFreeVariant ? '<span class="badge-free">무료 버전</span>' : '') +
+        '<td class="cell-model span-2" data-label="모델명"><span class="name">' + esc(m.name) + '</span>' + variantBadges(m) +
           '<span class="model-id">' + esc(m.id) + '</span></td>' +
-        '<td class="num" data-label="입력가 (/1M)">' + fmtPrice(m.inputPrice) + '</td>' +
-        '<td class="num" data-label="출력가 (/1M)">' + fmtPrice(m.outputPrice) + '</td>' +
+        '<td class="num" data-label="입력가 (/1M)"><span class="price">' + fmtPrice(m.inputPrice) + '</span>' + variantPriceLine(m, 'inputPrice') + '</td>' +
+        '<td class="num" data-label="출력가 (/1M)"><span class="price">' + fmtPrice(m.outputPrice) + '</span>' + variantPriceLine(m, 'outputPrice') + '</td>' +
         '<td class="num" data-label="컨텍스트 (토큰)">' + fmtCtx(m.contextLength) + '</td>' +
         '<td class="num" data-label="등록일">' + esc(m.created || '–') + '</td>' +
       '</tr>';
@@ -256,21 +318,25 @@
 
   /* ---------- (4) 차트 ---------- */
   function setupChart() {
-    ['chart-per-provider', 'chart-sort', 'chart-log'].forEach(function (id) {
-      $(id).addEventListener('change', renderChart);
+    document.querySelectorAll('.seg button[data-per]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.chartPer = Number(btn.getAttribute('data-per'));
+        document.querySelectorAll('.seg button[data-per]').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        renderChart();
+      });
     });
+    ['chart-sort', 'chart-log'].forEach(function (id) { $(id).addEventListener('change', function () { renderChart(); }); });
     var resizeTimer;
-    window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(renderChart, 200); });
+    window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(function () { renderChart(); }, 200); });
     renderChart();
   }
 
   function chartModels() {
-    var per = Number($('chart-per-provider').value) || 2;
     var picked = [];
     PROVIDER_ORDER.forEach(function (p) {
       state.models.filter(function (m) { return m.provider === p && m.inputPrice > 0 && m.outputPrice > 0; })
-        .sort(function (a, b) { return String(b.created || '').localeCompare(String(a.created || '')); })
-        .slice(0, per)
+        .sort(byNewest)
+        .slice(0, state.chartPer)
         .forEach(function (m) { picked.push(m); });
     });
     var sort = $('chart-sort').value;
@@ -282,21 +348,21 @@
   function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 
   var lastChartKey = '';
-  function renderChart() {
+  function renderChart(force) {
     if (!window.Chart) {
       if (document.readyState === 'complete') { $('chart-fallback').hidden = false; $('chart-box').hidden = true; }
       return;
     }
     var models = chartModels();
     var mobile = window.innerWidth <= 720;
-    var key = [models.length, $('chart-per-provider').value, $('chart-sort').value, $('chart-log').checked, effectiveTheme(), mobile].join('|');
-    if (key === lastChartKey && state.chart) return;
+    var key = [models.length, state.chartPer, $('chart-sort').value, $('chart-log').checked, effectiveTheme(), mobile].join('|');
+    if (!force && key === lastChartKey && state.chart) return;
     lastChartKey = key;
 
-    var box = $('chart-box');
-    box.style.height = Math.max(240, models.length * (mobile ? 40 : 36) + 60) + 'px';
+    $('chart-box').style.height = Math.max(240, models.length * (mobile ? 40 : 36) + 60) + 'px';
     var log = $('chart-log').checked;
     var text2 = cssVar('--text-2'), grid = cssVar('--grid'), surface = cssVar('--surface');
+    var font = { family: getComputedStyle(document.body).fontFamily };
 
     var data = {
       labels: models.map(function (m) { return mobile && m.name.length > 22 ? m.name.slice(0, 21) + '…' : m.name; }),
@@ -318,13 +384,14 @@
         indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 250 },
+        animation: { duration: 300 },
         interaction: { mode: 'index', intersect: false, axis: 'y' },
         plugins: {
           legend: { display: false },
           tooltip: {
             backgroundColor: surface, titleColor: cssVar('--text'), bodyColor: text2,
-            borderColor: cssVar('--border-strong'), borderWidth: 1, padding: 10, boxPadding: 4,
+            borderColor: cssVar('--border-strong'), borderWidth: 1, padding: 12, boxPadding: 4, cornerRadius: 10,
+            titleFont: font, bodyFont: font,
             callbacks: {
               title: function (items) { var m = models[items[0].dataIndex]; return m.name + ' · ' + m.provider; },
               label: function (c) { return ' ' + c.dataset.label + ': ' + fmtPrice(c.raw) + ' / 1M 토큰'; },
@@ -338,18 +405,18 @@
             grid: { color: grid, drawTicks: false },
             border: { display: false },
             ticks: {
-              color: text2, padding: 6, maxTicksLimit: mobile ? 5 : 8,
+              color: text2, padding: 6, maxTicksLimit: mobile ? 5 : 8, font: font,
               callback: function (v) {
                 if (log) { var e = Math.log10(v); if (Math.abs(e - Math.round(e)) > 1e-9) return ''; }
                 return '$' + Number(v).toLocaleString('en-US', { maximumFractionDigits: 2 });
               },
             },
-            title: { display: !mobile, text: 'USD / 1M 토큰', color: text2 },
+            title: { display: !mobile, text: 'USD / 1M 토큰', color: text2, font: font },
           },
           y: {
             grid: { display: false },
             border: { color: cssVar('--border-strong') },
-            ticks: { color: text2, autoSkip: false, font: { size: mobile ? 11 : 12 } },
+            ticks: { color: text2, autoSkip: false, font: { family: font.family, size: mobile ? 11 : 12 } },
           },
         },
       },
@@ -363,6 +430,15 @@
     var defs = (b && Array.isArray(b.benchmarks)) ? b.benchmarks : [];
     var entries = (b && Array.isArray(b.entries)) ? b.entries : [];
 
+    // 열별 최고점
+    var best = {};
+    defs.forEach(function (d) {
+      entries.forEach(function (e) {
+        var v = e.scores && e.scores[d.key];
+        if (typeof v === 'number' && isFinite(v) && (best[d.key] === undefined || v > best[d.key])) best[d.key] = v;
+      });
+    });
+
     $('bench-thead').innerHTML = '<tr><th scope="col">모델</th><th scope="col">설명</th>' +
       defs.map(function (d) { return '<th scope="col" class="num" title="' + esc(d.description || '') + '">' + esc(d.name) + '</th>'; }).join('') +
       '<th scope="col" class="num">기준일</th><th scope="col">출처</th></tr>';
@@ -375,21 +451,27 @@
         var url = safeUrl(e.sourceUrl);
         var price = state.models.find(function (m) { return m.id === e.modelId; });
         return '<tr>' +
-          '<td class="cell-model span-2" data-label="모델"><span class="name">' + esc(e.modelName || e.modelId) + '</span>' +
-            '<span class="model-id">' + (e.provider ? esc(e.provider) + ' · ' : '') + esc(e.modelId || '') + '</span>' +
+          '<td class="cell-model span-2" data-label="모델">' + (e.provider ? providerHtml(e.provider) : '') +
+            '<span class="name" style="display:block;margin-top:2px">' + esc(e.modelName || e.modelId) + '</span>' +
             (price ? '<span class="model-id">입력 ' + fmtPrice(price.inputPrice) + ' · 출력 ' + fmtPrice(price.outputPrice) + ' /1M</span>' : '') +
           '</td>' +
           '<td class="bench-summary span-2" data-label="설명">' + esc(e.summary || '') +
-            (e.note ? '<div class="muted" style="font-size:.78rem">' + esc(e.note) + '</div>' : '') + '</td>' +
+            (e.note ? '<span class="bench-note">' + esc(e.note) + '</span>' : '') + '</td>' +
           defs.map(function (d) {
             var v = scores[d.key];
-            var has = typeof v === 'number' && isFinite(v);
-            return '<td class="num" data-label="' + esc(d.name) + '">' +
-              (has ? esc(v.toLocaleString('en-US', { maximumFractionDigits: 1 })) + (d.unit ? esc(d.unit) : '') : '<span class="score-empty" title="미입력">–</span>') +
-              '</td>';
+            if (!(typeof v === 'number' && isFinite(v))) {
+              return '<td class="num" data-label="' + esc(d.name) + '"><span class="score-empty" title="미입력">–</span></td>';
+            }
+            var isBest = best[d.key] === v && entries.filter(function (x) { return x.scores && typeof x.scores[d.key] === 'number'; }).length > 1;
+            var pct = d.unit === '%' ? Math.max(0, Math.min(100, v)) : 100 * v / best[d.key];
+            return '<td class="num" data-label="' + esc(d.name) + '"><span class="score' + (isBest ? ' is-best' : '') + '">' +
+              '<span class="score-val">' + (isBest ? '<span class="best-chip">최고</span> ' : '') +
+                esc(v.toLocaleString('en-US', { maximumFractionDigits: 1 })) + (d.unit ? '<small>' + esc(d.unit) + '</small>' : '') + '</span>' +
+              '<span class="meter" aria-hidden="true"><i style="width:' + pct.toFixed(1) + '%"></i></span>' +
+            '</span></td>';
           }).join('') +
           '<td class="num" data-label="기준일">' + esc(e.asOf || '–') + '</td>' +
-          '<td data-label="출처">' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">출처 보기</a>' : '–') + '</td>' +
+          '<td data-label="출처">' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">출처 보기 ↗</a>' : '–') + '</td>' +
         '</tr>';
       }).join('');
     }
