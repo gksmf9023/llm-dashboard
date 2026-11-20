@@ -7,12 +7,14 @@
  * - 안전장치: 수집 실패 / 응답 구조 이상 / 모델 수 급감 시
  *   기존 파일을 건드리지 않고 exit code 1 로 종료 → 워크플로 실패 처리
  * - 모델 데이터가 이전과 같으면 아무 파일도 쓰지 않음 → 불필요한 커밋 없음
+ * - `:batch`, `:free` 같은 변형은 본 모델 행의 variants 로 묶음
  *
  * 사용법:
  *   node scripts/fetch-models.mjs                 # API에서 수집
  *   node scripts/fetch-models.mjs --input x.json  # 로컬 파일(OpenRouter 응답 형식)로 테스트
  *   node scripts/fetch-models.mjs --dry-run       # 결과만 출력, 파일 쓰지 않음
  *   node scripts/fetch-models.mjs --sample        # meta.json에 샘플 데이터 표시(isSample)
+ *   node scripts/fetch-models.mjs --reprocess     # API 호출 없이 현재 models.json을 새 규칙으로 재정리
  *
  * 환경 변수(선택):
  *   MIN_MODELS       필터링 후 최소 모델 수 (기본 30)
@@ -124,20 +126,15 @@ function normalize(raw) {
   if (!raw || !Array.isArray(raw.data)) fail('API 응답에 data 배열이 없습니다. 응답 구조가 바뀌었을 수 있습니다.');
   if (raw.data.length < MIN_RAW_MODELS) fail(`API 응답 모델 수가 비정상적으로 적습니다: ${raw.data.length}개 (최소 ${MIN_RAW_MODELS})`);
 
-  const freeVariants = new Set(
-    raw.data.filter((m) => typeof m?.id === 'string' && m.id.endsWith(':free')).map((m) => m.id.replace(/:free$/, ''))
-  );
-
   let targets = 0;
   let invalid = 0;
-  const models = [];
+  const rows = [];
 
   for (const m of raw.data) {
     if (typeof m?.id !== 'string') continue;
     const prefix = m.id.split('/')[0];
     const provider = PROVIDERS[prefix];
     if (!provider) continue;
-    if (m.id.endsWith(':free')) continue; // 무료 변형은 본 모델에 표시만
 
     targets++;
     const inputPrice = perMillion(m.pricing?.prompt);
@@ -148,7 +145,7 @@ function normalize(raw) {
     }
 
     const name = String(m.name ?? m.id).replace(/^[^:]{1,40}:\s*/, '');
-    models.push({
+    rows.push({
       id: m.id,
       name,
       provider,
@@ -158,7 +155,6 @@ function normalize(raw) {
       maxOutputTokens: Number.isFinite(m.top_provider?.max_completion_tokens) ? m.top_provider.max_completion_tokens : null,
       created: toKstDate(m.created),
       modality: m.architecture?.modality ?? null,
-      hasFreeVariant: freeVariants.has(m.id),
       description: shortDescription(m.description),
     });
   }
@@ -167,6 +163,38 @@ function normalize(raw) {
     fail(`가격 정보가 비정상인 모델 비율이 너무 높습니다: ${invalid}/${targets}`);
   }
 
+  return groupVariants(rows);
+}
+
+/**
+ * OpenRouter는 같은 모델의 변형을 `<id>:<변형>` 으로 따로 등록한다 (예: `:batch`, `:free`).
+ * 본 모델이 있으면 변형은 별도 행으로 두지 않고 본 모델의 variants 배열에 가격만 붙인다.
+ * 본 모델 없이 변형만 있으면 그 변형을 그대로 한 행으로 둔다.
+ */
+function groupVariants(rows) {
+  const byId = new Map();
+  for (const r of rows) {
+    if (!r.id.includes(':')) {
+      const { variants, hasFreeVariant, ...base } = r; // 이전 형식 필드 제거
+      byId.set(r.id, { ...base, variants: [] });
+    }
+  }
+  const models = [...byId.values()];
+  for (const r of rows) {
+    if (!r.id.includes(':')) continue;
+    const [baseId, type] = r.id.split(':');
+    const base = byId.get(baseId);
+    if (base) {
+      base.variants.push({ type, id: r.id, inputPrice: r.inputPrice, outputPrice: r.outputPrice });
+    } else {
+      const { variants, hasFreeVariant, ...orphan } = r;
+      models.push({ ...orphan, variants: [] });
+    }
+  }
+  for (const m of models) {
+    m.variants.sort((a, b) => a.type.localeCompare(b.type));
+    if (!m.variants.length) delete m.variants;
+  }
   models.sort((a, b) => (b.created ?? '').localeCompare(a.created ?? '') || a.id.localeCompare(b.id));
   return models;
 }
@@ -190,12 +218,16 @@ async function main() {
   const inputFile = argValue('--input');
   let raw;
   try {
-    raw = inputFile ? JSON.parse(await readFile(inputFile, 'utf8')) : await fetchWithRetry(API_URL);
+    if (inputFile) raw = JSON.parse(await readFile(inputFile, 'utf8'));
+    else if (!args.has('--reprocess')) raw = await fetchWithRetry(API_URL);
   } catch (err) {
     fail(`모델 목록 수집 실패: ${err.message}`);
   }
 
-  const models = normalize(raw);
+  // --reprocess: API 호출 없이 현재 data/models.json 을 새 규칙(변형 묶기 등)으로 다시 정리
+  const models = args.has('--reprocess')
+    ? groupVariants((await readJson(MODELS_FILE))?.models ?? [])
+    : normalize(raw);
 
   // ---- 안전장치 ----
   if (models.length < MIN_MODELS) fail(`필터링된 모델 수가 너무 적습니다: ${models.length}개 (최소 ${MIN_MODELS})`);
@@ -210,7 +242,7 @@ async function main() {
   const prev = await readJson(MODELS_FILE);
   const prevMeta = await readJson(META_FILE);
   const prevCount = Array.isArray(prev?.models) ? prev.models.length : 0;
-  if (prevCount > 0 && !prevMeta?.isSample && models.length < prevCount * (1 - MAX_DROP_RATIO)) {
+  if (prevCount > 0 && !prevMeta?.isSample && !args.has('--reprocess') && models.length < prevCount * (1 - MAX_DROP_RATIO)) {
     fail(`모델 수가 급감했습니다: ${prevCount} → ${models.length} (허용 감소율 ${MAX_DROP_RATIO * 100}%)`);
   }
 
@@ -230,7 +262,10 @@ async function main() {
     return;
   }
 
-  const t = nowKst();
+  // --reprocess 는 새로 수집한 것이 아니므로 마지막 수집 시각을 유지
+  const t = args.has('--reprocess') && prevMeta?.lastUpdated
+    ? { iso: prevMeta.lastUpdated, display: prevMeta.lastUpdatedKST }
+    : nowKst();
   const meta = {
     lastUpdated: t.iso,
     lastUpdatedKST: t.display,
