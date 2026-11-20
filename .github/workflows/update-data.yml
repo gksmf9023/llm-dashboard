@@ -1,0 +1,70 @@
+name: 모델 데이터 자동 갱신
+
+on:
+  schedule:
+    # 매주 월요일 00:00 UTC = 매주 월요일 09:00 KST (KST = UTC+9)
+    # (GitHub 혼잡 시 몇 분~수십 분 늦게 시작될 수 있음)
+    - cron: '0 0 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write # 푸시 후 Pages 빌드 요청용
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 모델 데이터 수집 (OpenRouter 공개 API, 키 불필요)
+        # 실패·응답 이상·모델 수 급감 시 스크립트가 exit 1 → 이 단계에서 워크플로 실패,
+        # 기존 data/*.json 은 변경되지 않음
+        run: node scripts/fetch-models.mjs
+
+      - name: JSON 형식 검증
+        run: |
+          node -e "for (const f of ['data/models.json','data/meta.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('OK', f); }"
+          # 수동 관리 파일은 문법 오류가 있어도 모델 데이터 갱신을 막지 않고 경고만 표시
+          node -e "try { JSON.parse(require('fs').readFileSync('data/benchmarks.json','utf8')); console.log('OK data/benchmarks.json'); } catch (e) { console.log('::warning::data/benchmarks.json JSON 문법 오류: ' + e.message); }"
+
+      - name: 변경 사항이 있을 때만 커밋/푸시
+        id: commit
+        run: |
+          if git diff --quiet -- data/models.json data/meta.json; then
+            echo "데이터 변경 없음 — 커밋하지 않습니다."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/models.json data/meta.json
+          COUNT=$(node -p "require('./data/meta.json').modelCount")
+          WHEN=$(node -p "require('./data/meta.json').lastUpdatedKST")
+          git commit -m "chore(data): 모델 데이터 자동 갱신 (${COUNT}개, ${WHEN})"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN으로 푸시한 커밋은 브랜치 기반 Pages 빌드를 자동으로 트리거하지 않으므로
+      # Pages 빌드를 직접 요청한다.
+      - name: GitHub Pages 재빌드 요청
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh api -X POST "repos/${{ github.repository }}/pages/builds"; then
+            echo "::error::Pages 빌드 요청에 실패했습니다. Settings → Pages에서 main / (root) 배포가 켜져 있는지 확인하세요. 데이터 커밋은 이미 완료되었습니다."
+            exit 1
+          fi
+          echo "Pages 빌드를 요청했습니다."
