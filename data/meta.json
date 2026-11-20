@@ -1,0 +1,24 @@
+{
+  "lastUpdated": "2026-11-20T16:53:46+09:00",
+  "lastUpdatedKST": "2026-11-20 16:53 KST",
+  "isSample": true,
+  "modelCount": 42,
+  "providerCounts": {
+    "OpenAI": 10,
+    "Anthropic": 6,
+    "Google": 5,
+    "Qwen (Alibaba)": 5,
+    "DeepSeek": 4,
+    "Meta": 4,
+    "Mistral": 4,
+    "xAI": 4
+  },
+  "sources": [
+    {
+      "name": "OpenRouter Models API",
+      "url": "https://openrouter.ai/api/v1/models",
+      "docs": "https://openrouter.ai/docs/api-reference/models/get-models",
+      "note": "가격은 OpenRouter 기준이며 제공사 공식 가격과 다를 수 있습니다."
+    }
+  ]
+}
