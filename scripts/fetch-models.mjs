@@ -175,8 +175,9 @@ function groupVariants(rows) {
   const byId = new Map();
   for (const r of rows) {
     if (!r.id.includes(':')) {
-      const { variants, hasFreeVariant, ...base } = r; // 이전 형식 필드 제거
-      byId.set(r.id, { ...base, variants: [] });
+      // 이미 묶인 variants는 유지 (--reprocess 를 여러 번 실행해도 결과가 같도록), 이전 형식 필드는 제거
+      const { variants, hasFreeVariant, ...base } = r;
+      byId.set(r.id, { ...base, variants: Array.isArray(variants) ? variants.slice() : [] });
     }
   }
   const models = [...byId.values()];
@@ -185,6 +186,7 @@ function groupVariants(rows) {
     const [baseId, type] = r.id.split(':');
     const base = byId.get(baseId);
     if (base) {
+      base.variants = base.variants.filter((v) => v.id !== r.id); // 같은 변형 중복 방지
       base.variants.push({ type, id: r.id, inputPrice: r.inputPrice, outputPrice: r.outputPrice });
     } else {
       const { variants, hasFreeVariant, ...orphan } = r;
