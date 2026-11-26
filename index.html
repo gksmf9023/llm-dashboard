@@ -6,7 +6,7 @@
   <title>LLM 모델 대시보드</title>
   <meta name="description" content="주요 LLM의 최신 모델, 토큰 가격, 컨텍스트 길이, 벤치마크를 한눈에 비교합니다.">
   <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M8 22V12M14 22V8M20 22v-7M26 22V14' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232a78d6'/%3E%3Cstop offset='1' stop-color='%236250d6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M9 22V13M14 22V9M19 22v-6M24 22V12' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
   <script>
     // 저장된 테마를 먼저 적용해 깜빡임 방지 (없으면 시스템 설정을 따름)
     try {
@@ -14,37 +14,64 @@
       if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   </script>
+  <!-- 한글 웹폰트 (Pretendard). 불러오지 못해도 시스템 글꼴로 정상 표시됩니다. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <h1>LLM 모델 대시보드</h1>
-        <p class="tagline">주요 제공사의 최신 모델 · 토큰 가격 · 컨텍스트 길이 · 벤치마크</p>
-      </div>
-      <button type="button" id="theme-toggle" class="icon-btn" aria-label="다크 모드로 전환">
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
-      </button>
-    </div>
-    <div class="container">
-      <dl class="meta-row" id="meta-row">
-        <div><dt>마지막 갱신</dt><dd id="meta-updated">불러오는 중…</dd></div>
-        <div><dt>수집 모델</dt><dd id="meta-count">–</dd></div>
-        <div><dt>출처</dt><dd id="meta-source">–</dd></div>
-      </dl>
-      <p id="sample-banner" class="notice" hidden>
-        현재 표시 중인 데이터는 <strong>화면 확인용 샘플</strong>입니다. GitHub Actions의 첫 자동 수집이 실행되면 실제 데이터로 바뀝니다.
-      </p>
+  <!-- 고정 상단 바 -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo" href="#top" aria-label="맨 위로">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 18v-7M10.5 18V6M15 18v-5M19.5 18V9"/></svg>
+        </span>
+        <span class="logo-text">LLM 대시보드</span>
+      </a>
       <nav class="section-nav" aria-label="섹션 이동">
         <a href="#latest">최신 모델</a>
         <a href="#prices">가격 비교</a>
         <a href="#chart">가격 차트</a>
         <a href="#benchmarks">벤치마크</a>
       </nav>
+      <button type="button" id="theme-toggle" class="icon-btn" aria-label="다크 모드로 전환">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- (1) 상단 히어로 -->
+  <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>매주 월요일 09:00 자동 갱신</p>
+      <h1>LLM 모델 <span class="grad-text">한눈에 비교</span></h1>
+      <p class="lead">OpenAI · Anthropic · Google · Meta · xAI · DeepSeek · Mistral · Qwen의<br class="br-pc"> 최신 모델, 토큰 가격, 컨텍스트 길이, 벤치마크를 모았습니다.</p>
+
+      <div class="meta-pills">
+        <span class="pill"><span class="pill-label">마지막 갱신</span> <strong id="meta-updated">불러오는 중…</strong></span>
+        <span class="pill"><span class="pill-label">출처</span> <span id="meta-source">OpenRouter</span></span>
+      </div>
+
+      <div class="kpis" id="kpis" aria-live="polite">
+        <div class="kpi"><span class="kpi-label">추적 중인 모델</span><span class="kpi-value">–</span></div>
+        <div class="kpi"><span class="kpi-label">최근 30일 신규</span><span class="kpi-value">–</span></div>
+        <div class="kpi"><span class="kpi-label">최저 입력가</span><span class="kpi-value">–</span></div>
+        <div class="kpi"><span class="kpi-label">최장 컨텍스트</span><span class="kpi-value">–</span></div>
+      </div>
+
+      <figure class="share" id="share" hidden>
+        <figcaption>제공사별 모델 수</figcaption>
+        <div class="share-bar" id="share-bar" role="img"></div>
+        <ul class="share-legend" id="share-legend"></ul>
+      </figure>
+
+      <p id="sample-banner" class="notice" hidden>
+        현재 표시 중인 데이터는 <strong>화면 확인용 샘플</strong>입니다. GitHub Actions의 첫 자동 수집이 실행되면 실제 데이터로 바뀝니다.
+      </p>
     </div>
   </header>
 
@@ -54,96 +81,104 @@
     <!-- (2) 최신 모델 -->
     <section id="latest" class="section" aria-labelledby="latest-title">
       <div class="section-head">
-        <h2 id="latest-title">최신 모델</h2>
-        <p class="section-desc">OpenRouter에 최근 등록된 순서입니다.</p>
+        <span class="section-kicker">01</span>
+        <div>
+          <h2 id="latest-title">최신 모델</h2>
+          <p class="section-desc">OpenRouter에 최근 등록된 순서입니다.</p>
+        </div>
       </div>
-      <div id="latest-cards" class="card-grid" aria-live="polite"></div>
+      <div id="latest-cards" class="card-grid"></div>
     </section>
 
     <!-- (3) 가격 비교표 -->
     <section id="prices" class="section" aria-labelledby="prices-title">
       <div class="section-head">
-        <h2 id="prices-title">가격 비교</h2>
-        <p class="section-desc">가격은 1M(100만) 토큰당 USD입니다. 열 제목을 누르면 정렬됩니다.</p>
+        <span class="section-kicker">02</span>
+        <div>
+          <h2 id="prices-title">가격 비교</h2>
+          <p class="section-desc">1M(100만) 토큰당 USD. 열 제목을 누르면 정렬됩니다. <code>batch</code> 같은 변형은 본 모델에 묶어 표시합니다.</p>
+        </div>
       </div>
 
-      <div class="toolbar">
-        <label class="field field-grow">
-          <span class="field-label">모델명 검색</span>
-          <input type="search" id="search" placeholder="예: gpt, claude, gemini" autocomplete="off">
-        </label>
-        <label class="field">
-          <span class="field-label">제공사</span>
-          <select id="provider-filter"><option value="">전체 제공사</option></select>
-        </label>
-        <label class="field field-mobile-sort">
-          <span class="field-label">정렬</span>
-          <select id="mobile-sort">
-            <option value="created:desc">최근 등록순</option>
-            <option value="inputPrice:asc">입력가 낮은순</option>
-            <option value="inputPrice:desc">입력가 높은순</option>
-            <option value="outputPrice:asc">출력가 낮은순</option>
-            <option value="outputPrice:desc">출력가 높은순</option>
-            <option value="contextLength:desc">컨텍스트 긴순</option>
-            <option value="name:asc">모델명순</option>
-          </select>
-        </label>
-      </div>
-      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <div class="panel">
+        <div class="toolbar">
+          <label class="field field-grow">
+            <span class="sr-only">모델명 검색</span>
+            <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="search" placeholder="모델명 검색 (예: gpt, claude, gemini)" autocomplete="off">
+          </label>
+          <label class="field field-mobile-sort">
+            <span class="sr-only">정렬</span>
+            <select id="mobile-sort">
+              <option value="created:desc">최근 등록순</option>
+              <option value="inputPrice:asc">입력가 낮은순</option>
+              <option value="inputPrice:desc">입력가 높은순</option>
+              <option value="outputPrice:asc">출력가 낮은순</option>
+              <option value="outputPrice:desc">출력가 높은순</option>
+              <option value="contextLength:desc">컨텍스트 긴순</option>
+              <option value="name:asc">모델명순</option>
+            </select>
+          </label>
+        </div>
+        <div class="chips" id="provider-chips" role="group" aria-label="제공사 필터"></div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
 
-      <div class="table-wrap">
-        <table class="data-table responsive-table" id="price-table">
-          <thead>
-            <tr>
-              <th scope="col" data-key="provider"><button type="button">제공사</button></th>
-              <th scope="col" data-key="name"><button type="button">모델명</button></th>
-              <th scope="col" data-key="inputPrice" class="num"><button type="button">입력가</button></th>
-              <th scope="col" data-key="outputPrice" class="num"><button type="button">출력가</button></th>
-              <th scope="col" data-key="contextLength" class="num"><button type="button">컨텍스트</button></th>
-              <th scope="col" data-key="created" class="num"><button type="button">등록일</button></th>
-            </tr>
-          </thead>
-          <tbody id="price-tbody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table class="data-table responsive-table" id="price-table">
+            <thead>
+              <tr>
+                <th scope="col" data-key="provider"><button type="button">제공사</button></th>
+                <th scope="col" data-key="name"><button type="button">모델명</button></th>
+                <th scope="col" data-key="inputPrice" class="num"><button type="button">입력가</button></th>
+                <th scope="col" data-key="outputPrice" class="num"><button type="button">출력가</button></th>
+                <th scope="col" data-key="contextLength" class="num"><button type="button">컨텍스트</button></th>
+                <th scope="col" data-key="created" class="num"><button type="button">등록일</button></th>
+              </tr>
+            </thead>
+            <tbody id="price-tbody"></tbody>
+          </table>
+        </div>
+        <button type="button" id="show-more" class="btn" hidden>더 보기</button>
       </div>
-      <button type="button" id="show-more" class="btn" hidden>더 보기</button>
     </section>
 
     <!-- (4) 차트 -->
     <section id="chart" class="section" aria-labelledby="chart-title">
       <div class="section-head">
-        <h2 id="chart-title">주요 모델 가격 비교</h2>
-        <p class="section-desc">제공사별 최신 모델의 입력/출력 가격 (USD / 1M 토큰)</p>
+        <span class="section-kicker">03</span>
+        <div>
+          <h2 id="chart-title">주요 모델 가격 비교</h2>
+          <p class="section-desc">제공사별 최신 모델의 입력/출력 가격 (USD / 1M 토큰)</p>
+        </div>
       </div>
-      <div class="toolbar">
-        <label class="field">
-          <span class="field-label">제공사별 모델 수</span>
-          <select id="chart-per-provider">
-            <option value="1">1개</option>
-            <option value="2" selected>2개</option>
-            <option value="3">3개</option>
-          </select>
-        </label>
-        <label class="field">
-          <span class="field-label">정렬</span>
-          <select id="chart-sort">
-            <option value="provider">제공사순</option>
-            <option value="output">출력가 높은순</option>
-            <option value="input">입력가 높은순</option>
-          </select>
-        </label>
-        <label class="check">
-          <input type="checkbox" id="chart-log">
-          <span>로그 스케일</span>
-        </label>
-      </div>
-      <div class="chart-card">
+      <div class="panel">
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="제공사별 모델 수">
+            <span class="seg-label">제공사별</span>
+            <button type="button" data-per="1">1개</button>
+            <button type="button" data-per="2" aria-pressed="true">2개</button>
+            <button type="button" data-per="3">3개</button>
+          </div>
+          <label class="field">
+            <span class="sr-only">정렬</span>
+            <select id="chart-sort">
+              <option value="provider">제공사순</option>
+              <option value="output">출력가 높은순</option>
+              <option value="input">입력가 높은순</option>
+            </select>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="chart-log">
+            <span class="switch-track" aria-hidden="true"></span>
+            <span>로그 스케일</span>
+          </label>
+        </div>
         <div class="chart-legend" aria-hidden="true">
           <span><i class="swatch swatch-input"></i>입력가</span>
           <span><i class="swatch swatch-output"></i>출력가</span>
         </div>
         <div class="chart-box" id="chart-box">
-          <canvas id="price-chart" role="img" aria-label="주요 모델의 입력·출력 가격 막대 그래프"></canvas>
+          <canvas id="price-chart" role="img" aria-label="주요 모델의 입력·출력 가격 막대 그래프. 같은 내용은 가격 비교표에서 볼 수 있습니다."></canvas>
         </div>
         <p class="chart-fallback" id="chart-fallback" hidden>차트 라이브러리를 불러오지 못했습니다. 위 가격 비교표를 참고하세요.</p>
       </div>
@@ -152,14 +187,19 @@
     <!-- (5) 벤치마크 -->
     <section id="benchmarks" class="section" aria-labelledby="bench-title">
       <div class="section-head">
-        <h2 id="bench-title">벤치마크</h2>
-        <p class="section-desc" id="bench-desc">직접 관리하는 <code>data/benchmarks.json</code>의 내용입니다. 비어 있는 값(–)은 아직 확인된 수치가 없다는 뜻입니다.</p>
+        <span class="section-kicker">04</span>
+        <div>
+          <h2 id="bench-title">벤치마크</h2>
+          <p class="section-desc" id="bench-desc">직접 관리하는 <code>data/benchmarks.json</code>의 내용입니다. 대부분 제공사가 직접 발표한 수치이며, <span class="score-empty">–</span>는 확인된 공식 수치가 없다는 뜻입니다. 각 열의 최고점은 <span class="best-chip">최고</span>로 표시합니다.</p>
+        </div>
       </div>
-      <div class="table-wrap">
-        <table class="data-table responsive-table" id="bench-table">
-          <thead id="bench-thead"></thead>
-          <tbody id="bench-tbody"></tbody>
-        </table>
+      <div class="panel panel-flush">
+        <div class="table-wrap">
+          <table class="data-table responsive-table bench-table" id="bench-table">
+            <thead id="bench-thead"></thead>
+            <tbody id="bench-tbody"></tbody>
+          </table>
+        </div>
       </div>
       <ul class="bench-defs" id="bench-defs"></ul>
     </section>
@@ -167,10 +207,16 @@
 
   <!-- (6) 하단 -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="disclaimer"><strong>정보는 참고용이며 공식 문서를 확인하세요.</strong> 가격·사양은 수시로 바뀌며, OpenRouter 경유 가격은 제공사 직접 이용 가격과 다를 수 있습니다.</p>
-      <p>데이터 출처: <span id="footer-sources"><a href="https://openrouter.ai/models" target="_blank" rel="noopener">OpenRouter Models API</a></span> · 벤치마크: 각 항목의 출처 링크 참고</p>
-      <p class="muted">매주 월요일 09:00(KST) GitHub Actions로 자동 갱신 · GitHub Pages 호스팅</p>
+    <div class="container footer-inner">
+      <div>
+        <p class="disclaimer"><strong>정보는 참고용이며 공식 문서를 확인하세요.</strong></p>
+        <p>가격·사양은 수시로 바뀌며, OpenRouter 경유 가격은 제공사 직접 이용 가격과 다를 수 있습니다. 벤치마크는 측정 조건(effort, 도구 사용 등)에 따라 달라집니다.</p>
+      </div>
+      <div class="footer-meta">
+        <p>데이터 출처: <span id="footer-sources"><a href="https://openrouter.ai/models" target="_blank" rel="noopener">OpenRouter Models API</a></span></p>
+        <p>벤치마크: 각 항목의 출처 링크 참고</p>
+        <p class="muted">GitHub Actions 주간 자동 갱신 · GitHub Pages 호스팅</p>
+      </div>
     </div>
   </footer>
 

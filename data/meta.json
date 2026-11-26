@@ -2,16 +2,16 @@
   "lastUpdated": "2026-11-23T15:12:49+09:00",
   "lastUpdatedKST": "2026-11-23 15:12 KST",
   "isSample": false,
-  "modelCount": 283,
+  "modelCount": 204,
   "providerCounts": {
-    "OpenAI": 106,
-    "Google": 47,
-    "Qwen (Alibaba)": 43,
-    "Anthropic": 32,
-    "Mistral": 22,
-    "DeepSeek": 17,
-    "xAI": 9,
-    "Meta": 7
+    "OpenAI": 65,
+    "Qwen (Alibaba)": 40,
+    "Google": 35,
+    "Mistral": 21,
+    "Anthropic": 16,
+    "DeepSeek": 14,
+    "Meta": 7,
+    "xAI": 6
   },
   "sources": [
     {
